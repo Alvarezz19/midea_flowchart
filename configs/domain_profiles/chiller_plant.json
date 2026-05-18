@@ -1,0 +1,24 @@
+{
+  "name": "chiller_plant",
+  "family_keywords": ["机房群控"],
+  "file_keywords": ["群控示例"],
+  "tab_roles": [
+    {"contains": ["硬接", "通讯"], "role": "io_comm", "label": "硬接&通讯信号"},
+    {"contains": ["主机"], "role": "chiller", "label": "主机控制"},
+    {"contains": ["冷却塔"], "role": "cooling_tower", "label": "冷却塔控制"},
+    {"contains": ["冷冻", "冷却泵"], "role": "pump", "label": "水泵控制"},
+    {"contains": ["加减载", "轮询"], "role": "loading_polling", "label": "加减载&轮询"},
+    {"contains": ["变频"], "role": "frequency", "label": "变频控制"},
+    {"contains": ["动作先后"], "role": "sequence", "label": "动作顺序判定"}
+  ],
+  "point_groups": [
+    {"prefixes": ["SYS", "SYSTEM"], "keywords": ["系统", "模式", "设定"], "label": "系统状态/设定"},
+    {"prefixes": ["CH", "CHILLER"], "keywords": ["主机"], "label": "主机"},
+    {"prefixes": ["CHWP"], "keywords": ["冷冻泵"], "label": "冷冻泵"},
+    {"prefixes": ["CWP"], "keywords": ["冷却泵"], "label": "冷却泵"},
+    {"prefixes": ["CTF", "CT"], "keywords": ["冷却塔", "塔风机"], "label": "冷却塔"},
+    {"prefixes": ["CHWV", "CWV", "CT_INV", "CT_OUTV"], "keywords": ["蝶阀", "阀门"], "label": "蝶阀"},
+    {"prefixes": ["SEN", "CHWS", "CHWR", "CW"], "keywords": ["温度", "压力", "流量", "湿球"], "label": "传感器/水系统参数"},
+    {"prefixes": ["ALARM"], "keywords": ["报警", "故障"], "label": "报警"}
+  ]
+}

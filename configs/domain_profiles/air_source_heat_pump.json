@@ -1,0 +1,26 @@
+{
+  "name": "air_source_heat_pump",
+  "family_keywords": ["机房群控"],
+  "file_keywords": ["风冷热泵"],
+  "tab_roles": [
+    {"contains": ["使用配置"], "role": "configuration", "label": "使用配置"},
+    {"contains": ["硬接", "调用"], "role": "hardwired", "label": "硬接/调用信号"},
+    {"contains": ["通讯"], "role": "communication", "label": "通讯信号"},
+    {"contains": ["备用"], "role": "spare", "label": "备用点位"},
+    {"contains": ["热泵"], "role": "heat_pump", "label": "热泵控制"},
+    {"contains": ["蝶阀"], "role": "valve", "label": "蝶阀控制"},
+    {"contains": ["水泵"], "role": "pump", "label": "水泵控制"},
+    {"contains": ["联动"], "role": "interlock", "label": "联动控制"},
+    {"contains": ["旁通"], "role": "bypass", "label": "旁通阀控制"}
+  ],
+  "point_groups": [
+    {"prefixes": ["SYS", "SYSTEM"], "keywords": ["系统", "配置", "季节"], "label": "系统配置/状态"},
+    {"prefixes": ["HP", "HPW"], "keywords": ["热泵"], "label": "热泵"},
+    {"prefixes": ["HPWP"], "keywords": ["水泵"], "label": "水泵"},
+    {"prefixes": ["HPWV", "V"], "keywords": ["蝶阀", "阀门"], "label": "热泵蝶阀"},
+    {"prefixes": ["BPV", "BYPASS"], "keywords": ["旁通"], "label": "旁通阀"},
+    {"prefixes": ["AI_HP", "AI_CH", "AI_CW"], "keywords": ["智能", "目标温度", "系数"], "label": "智能设定/算法参数"},
+    {"prefixes": ["ALARM"], "keywords": ["报警", "故障"], "label": "报警"},
+    {"prefixes": ["SEN", "OA", "WBT", "DBT"], "keywords": ["温度", "湿度", "压力", "焓值", "湿球", "干球"], "label": "传感器/气象参数"}
+  ]
+}

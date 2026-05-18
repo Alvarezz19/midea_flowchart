@@ -1,0 +1,4396 @@
+{
+  "schema_version": "0.1",
+  "source_path": "programs\\AHU程序\\泰安宁阳中医院\\flows_20260206160555.json",
+  "family": "AHU程序",
+  "project": "泰安宁阳中医院",
+  "profile": "ahu",
+  "overview": {
+    "nodes": [
+      {
+        "id": "tab:ab3fc9e",
+        "label": "IO/通讯",
+        "raw_label": "IO/通讯(安宁中医院）",
+        "kind": "tab",
+        "role": "io_comm",
+        "node_count": 144,
+        "type_counts": {
+          "swInput": 62,
+          "quote": 26,
+          "hwInput": 15,
+          "modbusOutput": 9,
+          "hwOutput": 7,
+          "compare": 4,
+          "constInput": 4,
+          "bitFetch": 3,
+          "comment": 3,
+          "delayOn": 3,
+          "linear": 3,
+          "logic": 3,
+          "divide": 2
+        },
+        "source_node_ids": [
+          "ab3fc9e"
+        ],
+        "position": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "id": "tab:6d209af",
+        "label": "控制",
+        "raw_label": "控制",
+        "kind": "tab",
+        "role": "control",
+        "node_count": 339,
+        "type_counts": {
+          "swInput": 132,
+          "quote": 92,
+          "logic": 20,
+          "switch": 19,
+          "compare": 17,
+          "limit": 13,
+          "delayOn": 7,
+          "constInput": 6,
+          "delayOff": 6,
+          "subtract": 5,
+          "edgeTrigger": 3,
+          "moisture": 3,
+          "multiply": 3,
+          "enthalpy": 2,
+          "pid": 2,
+          "srFlipflop": 2,
+          "comment": 1,
+          "delayOut": 1,
+          "linear": 1,
+          "runtime": 1,
+          "subflow:23f9145": 1,
+          "subflow:65810bf": 1,
+          "subflow:e895edf": 1
+        },
+        "source_node_ids": [
+          "6d209af"
+        ],
+        "position": {
+          "x": 360,
+          "y": 0
+        }
+      },
+      {
+        "id": "tab:e895fff",
+        "label": "排风机",
+        "raw_label": "排风机",
+        "kind": "tab",
+        "role": "exhaust_fan",
+        "node_count": 30,
+        "type_counts": {
+          "quote": 12,
+          "swInput": 12,
+          "constInput": 4,
+          "subflow:e895edf": 2
+        },
+        "source_node_ids": [
+          "e895fff"
+        ],
+        "position": {
+          "x": 720,
+          "y": 0
+        }
+      },
+      {
+        "id": "tab:f7d6e97",
+        "label": "定时",
+        "raw_label": "定时",
+        "kind": "tab",
+        "role": "schedule",
+        "node_count": 4,
+        "type_counts": {
+          "swInput": 3,
+          "logic": 1
+        },
+        "source_node_ids": [
+          "f7d6e97"
+        ],
+        "position": {
+          "x": 0,
+          "y": 220
+        }
+      },
+      {
+        "id": "tab:a4b914",
+        "label": "直膨机故障",
+        "raw_label": "直膨机故障",
+        "kind": "tab",
+        "role": "dx_fault",
+        "node_count": 14,
+        "type_counts": {
+          "modbusOutput": 7,
+          "swInput": 7
+        },
+        "source_node_ids": [
+          "a4b914"
+        ],
+        "position": {
+          "x": 360,
+          "y": 220
+        }
+      },
+      {
+        "id": "tab:572c1e3",
+        "label": "直膨机状态",
+        "raw_label": "直膨机状态",
+        "kind": "tab",
+        "role": "dx_status",
+        "node_count": 154,
+        "type_counts": {
+          "swInput": 88,
+          "modbusOutput": 62,
+          "comment": 2,
+          "multiply": 2
+        },
+        "source_node_ids": [
+          "572c1e3"
+        ],
+        "position": {
+          "x": 720,
+          "y": 220
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "tab:ab3fc9e->tab:6d209af",
+        "source": "tab:ab3fc9e",
+        "target": "tab:6d209af",
+        "weight": 33,
+        "source_edges": [
+          {
+            "source_id": "78add04",
+            "target_id": "723468a",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "80186db",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e932b00",
+            "target_id": "1b65f4a",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "9cb1aa4",
+            "target_id": "58ecfaa",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "16b1632",
+            "target_id": "acb232f",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e1a843b",
+            "target_id": "f207cab",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "1933181",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "9b36f2e",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "4b0fbfc",
+            "target_id": "41b9f3c",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "78add04",
+            "target_id": "b7cc099",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e932b00",
+            "target_id": "a66c94d",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "a267e2e",
+            "target_id": "8949fe7",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e1198b1",
+            "target_id": "7a9e8c2",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "18cece",
+            "target_id": "5cbe760",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "974806e",
+            "target_id": "8b9d622",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "4993473",
+            "target_id": "99fe606",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "8509764",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "8cad99a",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8f3fcd1",
+            "target_id": "887ed32",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "bec737d",
+            "target_id": "bb92999",
+            "source_port": 0,
+            "target_port": 0
+          }
+        ]
+      },
+      {
+        "id": "tab:6d209af->tab:ab3fc9e",
+        "source": "tab:6d209af",
+        "target": "tab:ab3fc9e",
+        "weight": 18,
+        "source_edges": [
+          {
+            "source_id": "da53fa",
+            "target_id": "6ae400d",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "cefc693",
+            "target_id": "8ba16af",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "ea56223",
+            "target_id": "e2233e4",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "7a16c87",
+            "target_id": "2cbe308",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "7a16c87",
+            "target_id": "a1916eb",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "ea56223",
+            "target_id": "a79f4a4",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e322496",
+            "target_id": "7457609",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "d3aecfa",
+            "target_id": "d22e313",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "3901a6c",
+            "target_id": "757085a",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "3e05472",
+            "target_id": "7abb00d",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "b5a8dc6",
+            "target_id": "4622f13",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "506b3de",
+            "target_id": "7a65691",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "3df7d78",
+            "target_id": "c232af8",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "e15f984",
+            "target_id": "ea2e72f",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "2070a31",
+            "target_id": "9079320",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "cc2de10",
+            "target_id": "d36f823",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "42d164d",
+            "target_id": "41c4449",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "57004cc",
+            "target_id": "bceab77",
+            "source_port": 0,
+            "target_port": 0
+          }
+        ]
+      },
+      {
+        "id": "tab:ab3fc9e->tab:e895fff",
+        "source": "tab:ab3fc9e",
+        "target": "tab:e895fff",
+        "weight": 8,
+        "source_edges": [
+          {
+            "source_id": "4a13560",
+            "target_id": "af00ef2",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "8faba91",
+            "target_id": "c22934a",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "fb6581d",
+            "target_id": "319b3dd",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "50a347d",
+            "target_id": "65fbcc4",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "64a9e98",
+            "target_id": "2a84b3e",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "152046b",
+            "target_id": "a770679",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "c894ac8",
+            "target_id": "4e76cca",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "f36fcd7",
+            "target_id": "ca9dc75",
+            "source_port": 0,
+            "target_port": 0
+          }
+        ]
+      },
+      {
+        "id": "tab:6d209af->tab:e895fff",
+        "source": "tab:6d209af",
+        "target": "tab:e895fff",
+        "weight": 4,
+        "source_edges": [
+          {
+            "source_id": "41abd4e",
+            "target_id": "2d0d18e",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "19b9b0d",
+            "target_id": "6dd1a90",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "41abd4e",
+            "target_id": "6103af6",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "19b9b0d",
+            "target_id": "21592a8",
+            "source_port": 0,
+            "target_port": 0
+          }
+        ]
+      },
+      {
+        "id": "tab:f7d6e97->tab:6d209af",
+        "source": "tab:f7d6e97",
+        "target": "tab:6d209af",
+        "weight": 2,
+        "source_edges": [
+          {
+            "source_id": "310b0e8",
+            "target_id": "2d187dc",
+            "source_port": 0,
+            "target_port": 0
+          },
+          {
+            "source_id": "863726c",
+            "target_id": "2b0db8",
+            "source_port": 0,
+            "target_port": 0
+          }
+        ]
+      }
+    ],
+    "metrics": {
+      "module_count": 6,
+      "edge_count": 5,
+      "compression_ratio": 165.33
+    }
+  },
+  "pages": {
+    "ab3fc9e": {
+      "id": "ab3fc9e",
+      "label": "IO/通讯(安宁中医院）",
+      "nodes": [
+        {
+          "id": "interface:hwInput",
+          "label": "物理输入",
+          "kind": "interface",
+          "role": "hwInput",
+          "source_node_ids": [
+            "9119faf",
+            "a5cdce2",
+            "b55573b",
+            "24c433",
+            "bda630c",
+            "a0380d5",
+            "99f926e",
+            "d104c2",
+            "54d1678",
+            "b7d509e",
+            "14c3143",
+            "a9a9361",
+            "e4eae25",
+            "b9bb68c",
+            "2e85b5c"
+          ],
+          "source_node_count": 15,
+          "type_counts": {
+            "hwInput": 15
+          },
+          "point_count": 15,
+          "matched_point_count": 0,
+          "unmatched_point_count": 15,
+          "sample_points": [
+            "物理输入",
+            "物理输入",
+            "物理输入",
+            "物理输入",
+            "物理输入",
+            "物理输入",
+            "物理输入",
+            "物理输入"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "interface:hwOutput",
+          "label": "物理输出",
+          "kind": "interface",
+          "role": "hwOutput",
+          "source_node_ids": [
+            "8d53232",
+            "4aea4eb",
+            "4558bd4",
+            "67c8a13",
+            "8c8e9df",
+            "63fdd68",
+            "68e5a4d"
+          ],
+          "source_node_count": 7,
+          "type_counts": {
+            "hwOutput": 7
+          },
+          "point_count": 7,
+          "matched_point_count": 0,
+          "unmatched_point_count": 7,
+          "sample_points": [
+            "物理输出",
+            "物理输出",
+            "物理输出",
+            "物理输出",
+            "物理输出",
+            "物理输出",
+            "物理输出"
+          ],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        },
+        {
+          "id": "interface:modbusOutput",
+          "label": "通讯点",
+          "kind": "interface",
+          "role": "modbusOutput",
+          "source_node_ids": [
+            "6478312",
+            "8de417c",
+            "6c618b9",
+            "1d58f4c",
+            "a463906",
+            "62ff00c",
+            "bd9d450",
+            "7f57509",
+            "fa5323e"
+          ],
+          "source_node_count": 9,
+          "type_counts": {
+            "modbusOutput": 9
+          },
+          "point_count": 9,
+          "matched_point_count": 5,
+          "unmatched_point_count": 4,
+          "sample_points": [
+            "制冷温度设定",
+            "制热温度设定",
+            "直膨开关机",
+            "工作模式",
+            "直膨外机故障",
+            "直膨总故障",
+            "直膨温度",
+            "直膨湿度"
+          ],
+          "position": {
+            "x": 680,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:CO2控制",
+          "label": "CO2控制",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "fa2f4e0"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "swInput": 1
+          },
+          "point_count": 1,
+          "matched_point_count": 0,
+          "unmatched_point_count": 1,
+          "sample_points": [
+            "CO2"
+          ],
+          "position": {
+            "x": 1020,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:other_points",
+          "label": "其他软件点/设定点",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "1f96f27",
+            "c1ae750",
+            "bac489b",
+            "5dd1c3f",
+            "4d3992e",
+            "f1aa752",
+            "4bc9b6c",
+            "63ae20b",
+            "6f12e74",
+            "6ef1152",
+            "2e98731",
+            "d3d7cdf",
+            "d16caba"
+          ],
+          "source_node_count": 13,
+          "type_counts": {
+            "swInput": 13
+          },
+          "point_count": 13,
+          "matched_point_count": 1,
+          "unmatched_point_count": 12,
+          "sample_points": [
+            "变量",
+            "变量",
+            "冷温度",
+            "热温度",
+            "MOD",
+            "变量",
+            "XFLS",
+            "PreEH_F"
+          ],
+          "position": {
+            "x": 0,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:冷热水阀_水温",
+          "label": "冷热水阀/水温",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "4993473",
+            "7ed1c70",
+            "444bcab",
+            "b0f7907"
+          ],
+          "source_node_count": 4,
+          "type_counts": {
+            "swInput": 4
+          },
+          "point_count": 4,
+          "matched_point_count": 0,
+          "unmatched_point_count": 4,
+          "sample_points": [
+            "CW_T1",
+            "CW_RH1",
+            "CWV_FB",
+            "HWV_FB"
+          ],
+          "position": {
+            "x": 340,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:报警_保护_滤网",
+          "label": "报警/保护/滤网",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "8a1ae95",
+            "6b32971",
+            "f350c52",
+            "4af0689"
+          ],
+          "source_node_count": 4,
+          "type_counts": {
+            "swInput": 4
+          },
+          "point_count": 4,
+          "matched_point_count": 1,
+          "unmatched_point_count": 3,
+          "sample_points": [
+            "PFil",
+            "TX_ALM",
+            "AFP",
+            "AFP_ALM"
+          ],
+          "position": {
+            "x": 680,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:排风_回风机",
+          "label": "排风/回风机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "4a13560",
+            "8faba91",
+            "fb6581d",
+            "64a9e98",
+            "152046b",
+            "c894ac8",
+            "50a347d",
+            "f36fcd7"
+          ],
+          "source_node_count": 8,
+          "type_counts": {
+            "swInput": 8
+          },
+          "point_count": 8,
+          "matched_point_count": 0,
+          "unmatched_point_count": 8,
+          "sample_points": [
+            "EF1_RUN",
+            "EF1_F",
+            "EF1_LR",
+            "EF2_RUN",
+            "EF2_F",
+            "EF2_LR",
+            "EF1_DP",
+            "EF2_DP"
+          ],
+          "position": {
+            "x": 1020,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:温湿度_空气参数",
+          "label": "温湿度/空气参数",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "a267e2e",
+            "e1198b1",
+            "e1a843b",
+            "3a116a6",
+            "f93e57",
+            "f328f89",
+            "6081a25",
+            "ab3dc32",
+            "c35615c",
+            "da21237"
+          ],
+          "source_node_count": 10,
+          "type_counts": {
+            "swInput": 10
+          },
+          "point_count": 10,
+          "matched_point_count": 4,
+          "unmatched_point_count": 6,
+          "sample_points": [
+            "FA_T",
+            "FA_RH",
+            "FAD_FB",
+            "SA_T",
+            "SA_RH",
+            "RA_T",
+            "RA_RH",
+            "RAD_FB"
+          ],
+          "position": {
+            "x": 0,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:电加热",
+          "label": "电加热",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "4b0fbfc",
+            "2521417",
+            "e4cc7dc",
+            "b5c9c7f",
+            "216711f"
+          ],
+          "source_node_count": 5,
+          "type_counts": {
+            "swInput": 5
+          },
+          "point_count": 5,
+          "matched_point_count": 0,
+          "unmatched_point_count": 5,
+          "sample_points": [
+            "EH_F",
+            "EH_LR",
+            "EH1_RUN",
+            "EH2_RUN",
+            "EH3_RUN"
+          ],
+          "position": {
+            "x": 340,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:直膨机_外机",
+          "label": "直膨机/外机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "ee5bc7c",
+            "555e182",
+            "78add04",
+            "d067ce2",
+            "18cece",
+            "974806e",
+            "8a2f954",
+            "ce87d55"
+          ],
+          "source_node_count": 8,
+          "type_counts": {
+            "swInput": 8
+          },
+          "point_count": 8,
+          "matched_point_count": 3,
+          "unmatched_point_count": 5,
+          "sample_points": [
+            "ZP_OUT_MF",
+            "ZP_OUT_SF",
+            "ZP_F",
+            "ZP_RUN",
+            "ZP_T0",
+            "ZP_RH0",
+            "ZP_T1",
+            "ZP_RH1"
+          ],
+          "position": {
+            "x": 680,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:系统状态_模式",
+          "label": "系统状态/模式",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "bec737d"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "swInput": 1
+          },
+          "point_count": 1,
+          "matched_point_count": 0,
+          "unmatched_point_count": 1,
+          "sample_points": [
+            "SYS_STOP"
+          ],
+          "position": {
+            "x": 1020,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:送风机",
+          "label": "送风机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "4162fe0",
+            "ff76668",
+            "9b8004f",
+            "16b1632",
+            "8f3fcd1",
+            "899b893",
+            "9cb1aa4",
+            "e932b00"
+          ],
+          "source_node_count": 8,
+          "type_counts": {
+            "swInput": 8
+          },
+          "point_count": 8,
+          "matched_point_count": 5,
+          "unmatched_point_count": 3,
+          "sample_points": [
+            "SF_FRQ_FB",
+            "SF_P",
+            "SFil",
+            "SF_DP",
+            "SF_RUN",
+            "SF_F",
+            "SF_LR",
+            "SF_F"
+          ],
+          "position": {
+            "x": 0,
+            "y": 660
+          }
+        },
+        {
+          "id": "config:constants",
+          "label": "配置/常量",
+          "kind": "config",
+          "role": "constants",
+          "source_node_ids": [
+            "3ccd54",
+            "2fc0213",
+            "5760898",
+            "1f90a74"
+          ],
+          "source_node_count": 4,
+          "type_counts": {
+            "constInput": 4
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 340,
+            "y": 660
+          }
+        },
+        {
+          "id": "algorithm:other",
+          "label": "其他逻辑",
+          "kind": "algorithm",
+          "role": "other",
+          "source_node_ids": [
+            "55554a7",
+            "b101c49",
+            "a35611a"
+          ],
+          "source_node_count": 3,
+          "type_counts": {
+            "comment": 3
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 680,
+            "y": 660
+          }
+        },
+        {
+          "id": "algorithm:logic_timing",
+          "label": "联锁/时序/状态位",
+          "kind": "algorithm",
+          "role": "logic_timing",
+          "source_node_ids": [
+            "8a5ba17",
+            "3e708c7",
+            "2060942",
+            "971913c",
+            "99b97d",
+            "1154c92",
+            "7510aba",
+            "b07ef6b",
+            "25fca6d",
+            "5a4d50",
+            "136af60",
+            "22ae104",
+            "26b93fc"
+          ],
+          "source_node_count": 13,
+          "type_counts": {
+            "bitFetch": 3,
+            "compare": 4,
+            "logic": 3,
+            "delayOn": 3
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 1020,
+            "y": 660
+          }
+        },
+        {
+          "id": "algorithm:calculation",
+          "label": "计算/PID/统计",
+          "kind": "algorithm",
+          "role": "calculation",
+          "source_node_ids": [
+            "fb90f96",
+            "4bb5b59",
+            "2b1aee5",
+            "88ceb0e",
+            "26a3d36"
+          ],
+          "source_node_count": 5,
+          "type_counts": {
+            "linear": 3,
+            "divide": 2
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 0,
+            "y": 880
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "interface:hwInput->point:温湿度_空气参数",
+          "source": "interface:hwInput",
+          "target": "point:温湿度_空气参数",
+          "weight": 6,
+          "source_edges": [
+            {
+              "source_id": "b55573b",
+              "target_id": "a267e2e",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "24c433",
+              "target_id": "e1198b1",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "9119faf",
+              "target_id": "3a116a6",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "a5cdce2",
+              "target_id": "f93e57",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "b9bb68c",
+              "target_id": "c35615c",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "2e85b5c",
+              "target_id": "da21237",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:hwInput->point:送风机",
+          "source": "interface:hwInput",
+          "target": "point:送风机",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "d104c2",
+              "target_id": "9b8004f",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "54d1678",
+              "target_id": "16b1632",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "bda630c",
+              "target_id": "8f3fcd1",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "a0380d5",
+              "target_id": "899b893",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:calculation->interface:modbusOutput",
+          "source": "algorithm:calculation",
+          "target": "interface:modbusOutput",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "fb90f96",
+              "target_id": "6478312",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "4bb5b59",
+              "target_id": "8de417c",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "26a3d36",
+              "target_id": "fa5323e",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:直膨机_外机",
+          "source": "algorithm:logic_timing",
+          "target": "point:直膨机_外机",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "8a5ba17",
+              "target_id": "ee5bc7c",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "3e708c7",
+              "target_id": "555e182",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "5a4d50",
+              "target_id": "78add04",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:modbusOutput->point:other_points",
+          "source": "interface:modbusOutput",
+          "target": "point:other_points",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "a463906",
+              "target_id": "1f96f27",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "62ff00c",
+              "target_id": "c1ae750",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1d58f4c",
+              "target_id": "4d3992e",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:modbusOutput->point:直膨机_外机",
+          "source": "interface:modbusOutput",
+          "target": "point:直膨机_外机",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "6c618b9",
+              "target_id": "d067ce2",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "bd9d450",
+              "target_id": "18cece",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "7f57509",
+              "target_id": "974806e",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->algorithm:logic_timing",
+          "source": "point:other_points",
+          "target": "algorithm:logic_timing",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "1f96f27",
+              "target_id": "8a5ba17",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1f96f27",
+              "target_id": "3e708c7",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "c1ae750",
+              "target_id": "2060942",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->interface:hwOutput",
+          "source": "point:other_points",
+          "target": "interface:hwOutput",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "6f12e74",
+              "target_id": "4aea4eb",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "6ef1152",
+              "target_id": "4558bd4",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "2e98731",
+              "target_id": "67c8a13",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:calculation->point:other_points",
+          "source": "algorithm:calculation",
+          "target": "point:other_points",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "2b1aee5",
+              "target_id": "bac489b",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "88ceb0e",
+              "target_id": "5dd1c3f",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->interface:modbusOutput",
+          "source": "algorithm:logic_timing",
+          "target": "interface:modbusOutput",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "971913c",
+              "target_id": "6478312",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "99b97d",
+              "target_id": "8de417c",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:other_points",
+          "source": "algorithm:logic_timing",
+          "target": "point:other_points",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "2060942",
+              "target_id": "f1aa752",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "26b93fc",
+              "target_id": "d3d7cdf",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:报警_保护_滤网",
+          "source": "algorithm:logic_timing",
+          "target": "point:报警_保护_滤网",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "25fca6d",
+              "target_id": "6b32971",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "136af60",
+              "target_id": "4af0689",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:hwInput->point:other_points",
+          "source": "interface:hwInput",
+          "target": "point:other_points",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "a9a9361",
+              "target_id": "4bc9b6c",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e4eae25",
+              "target_id": "63ae20b",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:hwInput->point:排风_回风机",
+          "source": "interface:hwInput",
+          "target": "point:排风_回风机",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "b7d509e",
+              "target_id": "4a13560",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "14c3143",
+              "target_id": "64a9e98",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:modbusOutput->algorithm:calculation",
+          "source": "interface:modbusOutput",
+          "target": "algorithm:calculation",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "6478312",
+              "target_id": "2b1aee5",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "8de417c",
+              "target_id": "88ceb0e",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:直膨机_外机->algorithm:logic_timing",
+          "source": "point:直膨机_外机",
+          "target": "algorithm:logic_timing",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "ee5bc7c",
+              "target_id": "5a4d50",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "555e182",
+              "target_id": "5a4d50",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "config:constants->algorithm:logic_timing",
+          "source": "config:constants",
+          "target": "algorithm:logic_timing",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "5760898",
+              "target_id": "7510aba",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "config:constants->interface:modbusOutput",
+          "source": "config:constants",
+          "target": "interface:modbusOutput",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "1f90a74",
+              "target_id": "1d58f4c",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "config:constants->point:电加热",
+          "source": "config:constants",
+          "target": "point:电加热",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "3ccd54",
+              "target_id": "2521417",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "config:constants->point:送风机",
+          "source": "config:constants",
+          "target": "point:送风机",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "3ccd54",
+              "target_id": "9cb1aa4",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:hwInput->point:报警_保护_滤网",
+          "source": "interface:hwInput",
+          "target": "point:报警_保护_滤网",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "99f926e",
+              "target_id": "8a1ae95",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 144,
+        "module_count": 17,
+        "edge_count": 21,
+        "compression_ratio": 8.47,
+        "unmatched_point_count": 74,
+        "reference_node_count": 26
+      }
+    },
+    "6d209af": {
+      "id": "6d209af",
+      "label": "控制",
+      "nodes": [
+        {
+          "id": "point:other_points",
+          "label": "其他软件点/设定点",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "97a29d6",
+            "3236ab9",
+            "48e7eb5",
+            "7a16c87",
+            "f0a4a35",
+            "c567ea6",
+            "c6bc1c4",
+            "d7939cb",
+            "e706a2f",
+            "cbba350",
+            "badb7a0",
+            "56a8dd1",
+            "ed51736",
+            "1304934",
+            "1c664ff",
+            "5aafb54",
+            "3e64af0",
+            "deb1815",
+            "9a18fc1",
+            "e2be0a9",
+            "287c1c9",
+            "cc2de10",
+            "42d164d",
+            "57004cc",
+            "f3f53ad",
+            "2699e62",
+            "368e88e",
+            "7394760",
+            "571f5e2",
+            "cd674ce",
+            "e3d03e0",
+            "752827c",
+            "bf5c593",
+            "cf75fe9"
+          ],
+          "source_node_count": 34,
+          "type_counts": {
+            "swInput": 34
+          },
+          "point_count": 34,
+          "matched_point_count": 1,
+          "unmatched_point_count": 33,
+          "sample_points": [
+            "开阀",
+            "开风机",
+            "MOD_SP",
+            "T_SP",
+            "CLOSE_DT",
+            "WV_PID1",
+            "WV_PID2",
+            "WV_PID3"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:冷热水阀_水温",
+          "label": "冷热水阀/水温",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "6221124",
+            "13138b0",
+            "4bafeb9",
+            "525a393",
+            "506b3de",
+            "3b7b49a",
+            "b44e2cd",
+            "7cbb71b"
+          ],
+          "source_node_count": 8,
+          "type_counts": {
+            "swInput": 8
+          },
+          "point_count": 8,
+          "matched_point_count": 3,
+          "unmatched_point_count": 5,
+          "sample_points": [
+            "CWV_AC",
+            "HWV_AC",
+            "CWV_AM",
+            "CWV_MC",
+            "CWV_CST",
+            "HWV_AM",
+            "HWV_MC",
+            "HWV_CST"
+          ],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:加湿控制",
+          "label": "加湿控制",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "76ba6aa",
+            "520ef66",
+            "2889afd",
+            "7361b26",
+            "a7f3409",
+            "7b70719",
+            "c4aecaf",
+            "aa13cb9",
+            "be6210b",
+            "e07030f",
+            "824ac6d"
+          ],
+          "source_node_count": 11,
+          "type_counts": {
+            "swInput": 11
+          },
+          "point_count": 11,
+          "matched_point_count": 2,
+          "unmatched_point_count": 9,
+          "sample_points": [
+            "HUM_EN",
+            "HUM_CST",
+            "HUM_AM",
+            "HUM_MC",
+            "HUM_CL",
+            "HUM_CL_EN",
+            "HUM_PID1",
+            "HUM_PID2"
+          ],
+          "position": {
+            "x": 680,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:定时使能",
+          "label": "定时使能",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "70cb51"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "swInput": 1
+          },
+          "point_count": 1,
+          "matched_point_count": 0,
+          "unmatched_point_count": 1,
+          "sample_points": [
+            "TIME_CLEAR"
+          ],
+          "position": {
+            "x": 1020,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:排风_回风机",
+          "label": "排风/回风机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "19b9b0d",
+            "158b798",
+            "b4894af"
+          ],
+          "source_node_count": 3,
+          "type_counts": {
+            "swInput": 3
+          },
+          "point_count": 3,
+          "matched_point_count": 0,
+          "unmatched_point_count": 3,
+          "sample_points": [
+            "开排风机",
+            "EF_DT0",
+            "EF_DT1"
+          ],
+          "position": {
+            "x": 0,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:新风_回风_排风阀",
+          "label": "新风/回风/排风阀",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "d6900d2",
+            "92faaf0"
+          ],
+          "source_node_count": 2,
+          "type_counts": {
+            "swInput": 2
+          },
+          "point_count": 2,
+          "matched_point_count": 0,
+          "unmatched_point_count": 2,
+          "sample_points": [
+            "AD_AC",
+            "AD1"
+          ],
+          "position": {
+            "x": 340,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:温湿度_空气参数",
+          "label": "温湿度/空气参数",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "d675982",
+            "f9f9de8",
+            "569486f",
+            "38b67d7",
+            "13a946e",
+            "da53fa",
+            "d6e35f0",
+            "6a44e53",
+            "58b22e1",
+            "870aa93",
+            "e322496",
+            "6a39c71",
+            "1f42678",
+            "2e4b73a",
+            "2322335",
+            "c921c89",
+            "bd0777c",
+            "122d67f",
+            "3aa73c9"
+          ],
+          "source_node_count": 19,
+          "type_counts": {
+            "swInput": 19
+          },
+          "point_count": 19,
+          "matched_point_count": 0,
+          "unmatched_point_count": 19,
+          "sample_points": [
+            "FAD_ALM",
+            "FAD_AM",
+            "M_FAD_AM",
+            "FAD_MC",
+            "M_FAD_MC",
+            "FAD_CST",
+            "RAD_AM",
+            "M_RAD_AM"
+          ],
+          "position": {
+            "x": 680,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:电加热",
+          "label": "电加热",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "e190ffe",
+            "3df7d78",
+            "e15f984",
+            "2070a31",
+            "67005f9",
+            "7f8e91e",
+            "fddf9db",
+            "7e2b3fd",
+            "225569",
+            "37107db",
+            "40a90e0",
+            "5310576"
+          ],
+          "source_node_count": 12,
+          "type_counts": {
+            "swInput": 12
+          },
+          "point_count": 12,
+          "matched_point_count": 0,
+          "unmatched_point_count": 12,
+          "sample_points": [
+            "EH_EN",
+            "EH1_CST",
+            "EH2_CST",
+            "EH3_CST",
+            "EH_C",
+            "EH_AM",
+            "EH_MC",
+            "EH_PID1"
+          ],
+          "position": {
+            "x": 1020,
+            "y": 220
+          }
+        },
+        {
+          "id": "point:直膨机_外机",
+          "label": "直膨机/外机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "3e2459",
+            "550717b",
+            "ea56223",
+            "d053c34"
+          ],
+          "source_node_count": 4,
+          "type_counts": {
+            "swInput": 4
+          },
+          "point_count": 4,
+          "matched_point_count": 0,
+          "unmatched_point_count": 4,
+          "sample_points": [
+            "ZP_AM",
+            "ZP_MC",
+            "ZP_CST",
+            "ZP_EN0"
+          ],
+          "position": {
+            "x": 0,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:系统状态_模式",
+          "label": "系统状态/模式",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "41abd4e",
+            "523960a",
+            "e650ec6",
+            "9ad9cc",
+            "3901a6c",
+            "d3aecfa",
+            "7eb686b",
+            "c9ba015",
+            "5ac7623",
+            "788c7af",
+            "de90a5e",
+            "5f2dbc9",
+            "3774250",
+            "598d8d5",
+            "b5a8dc6"
+          ],
+          "source_node_count": 15,
+          "type_counts": {
+            "swInput": 15
+          },
+          "point_count": 15,
+          "matched_point_count": 0,
+          "unmatched_point_count": 15,
+          "sample_points": [
+            "SYS_LR",
+            "M_SYS_LR",
+            "SYS_MC",
+            "M_SYS_MC",
+            "SYS_F",
+            "SYS_RUN",
+            "SYS_MOD_SP",
+            "M_SYS_MOD_SP"
+          ],
+          "position": {
+            "x": 340,
+            "y": 440
+          }
+        },
+        {
+          "id": "point:送风机",
+          "label": "送风机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "902dd1",
+            "18a5a9d",
+            "8cd05ad",
+            "6cfdb70",
+            "3e05472",
+            "5e61351",
+            "7ac21d9",
+            "bdcd9c3",
+            "c14c6b5",
+            "8d0625a",
+            "219f3e8",
+            "2a43dc6",
+            "afb4c74",
+            "c655ab0",
+            "4470c11",
+            "9aae86f",
+            "cefc693",
+            "f9a45be",
+            "83eb4ac",
+            "4f8cc18",
+            "2f16638",
+            "443a131",
+            "94231f7"
+          ],
+          "source_node_count": 23,
+          "type_counts": {
+            "swInput": 23
+          },
+          "point_count": 23,
+          "matched_point_count": 3,
+          "unmatched_point_count": 20,
+          "sample_points": [
+            "SF_MC",
+            "M_SF_MC",
+            "SF_AM",
+            "M_SF_AM",
+            "SF_CST",
+            "SF_MF",
+            "SF_FRQ_MC",
+            "M_SF_FRQ_MC"
+          ],
+          "position": {
+            "x": 680,
+            "y": 440
+          }
+        },
+        {
+          "id": "config:constants",
+          "label": "配置/常量",
+          "kind": "config",
+          "role": "constants",
+          "source_node_ids": [
+            "ab6f82a",
+            "9d5ce5e",
+            "c365361",
+            "93ce189",
+            "15b38bd",
+            "2ab966c"
+          ],
+          "source_node_count": 6,
+          "type_counts": {
+            "constInput": 6
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 1020,
+            "y": 440
+          }
+        },
+        {
+          "id": "subflow:subflow:23f9145",
+          "label": "7档电加热",
+          "kind": "subflow",
+          "role": "control_module",
+          "source_node_ids": [
+            "c91d7ec"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "subflow:23f9145": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 0,
+            "y": 660
+          }
+        },
+        {
+          "id": "subflow:subflow:65810bf",
+          "label": "末端组空冷水阀开度控制",
+          "kind": "subflow",
+          "role": "control_module",
+          "source_node_ids": [
+            "c7f9c74"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "subflow:65810bf": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 340,
+            "y": 660
+          }
+        },
+        {
+          "id": "subflow:subflow:e895edf",
+          "label": "末端组空送风机标准控制",
+          "kind": "subflow",
+          "role": "control_module",
+          "source_node_ids": [
+            "5ae9f75"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "subflow:e895edf": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 680,
+            "y": 660
+          }
+        },
+        {
+          "id": "algorithm:other",
+          "label": "其他逻辑",
+          "kind": "algorithm",
+          "role": "other",
+          "source_node_ids": [
+            "15a567e"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "comment": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 1020,
+            "y": 660
+          }
+        },
+        {
+          "id": "algorithm:logic_timing",
+          "label": "联锁/时序/状态位",
+          "kind": "algorithm",
+          "role": "logic_timing",
+          "source_node_ids": [
+            "ae86f9",
+            "9ddd19c",
+            "835c052",
+            "1f3dd66",
+            "24a9702",
+            "c548a19",
+            "7625de",
+            "86c7db4",
+            "d8caddc",
+            "59afc9c",
+            "a853471",
+            "1b9f4d9",
+            "95de1d0",
+            "2dc9041",
+            "c93acdb",
+            "844f30e",
+            "9c8e279",
+            "7fd99e3",
+            "133942f",
+            "2b64aa1",
+            "1d3f12d",
+            "e0ccffa",
+            "4a3eae9",
+            "55aa00d",
+            "823ec25",
+            "8fed3a4",
+            "633fad9",
+            "f76cc22",
+            "aec3c00",
+            "4463ce7",
+            "1dd65d2",
+            "4c31492",
+            "2a657d2",
+            "40dce9a",
+            "7434df1",
+            "1209741",
+            "ff68bb1",
+            "736cc48",
+            "bc31a1",
+            "470a2a8",
+            "937dbdb",
+            "fd5ff5",
+            "46957ad",
+            "996d90b",
+            "4e181d7",
+            "1a74dd2",
+            "dce3c3b",
+            "88efd7",
+            "eec889f",
+            "9476e31",
+            "22a7046",
+            "481bfd",
+            "e7d907",
+            "b9f5a15",
+            "f6f8472",
+            "c5c349",
+            "e58398",
+            "dd6bfb0",
+            "942b576",
+            "a9a2fdb",
+            "2bab87f",
+            "79536a8",
+            "fe1d905",
+            "4b4951a",
+            "58277b4",
+            "fca3c87",
+            "83323ee",
+            "3a1242f",
+            "53b467d",
+            "8b2c116",
+            "b4cc2a3",
+            "e4eb9b9",
+            "4bfa20a",
+            "fe43601",
+            "c5037af",
+            "bf65101",
+            "9559a38",
+            "30d418a",
+            "dac3fc9",
+            "14cfd81",
+            "bc33515",
+            "4338a7f",
+            "b1f8571",
+            "d4ea680",
+            "9e5ee92",
+            "563cb22",
+            "7655bf3",
+            "bf916c6"
+          ],
+          "source_node_count": 88,
+          "type_counts": {
+            "logic": 20,
+            "limit": 13,
+            "delayOn": 7,
+            "switch": 19,
+            "compare": 17,
+            "delayOff": 6,
+            "edgeTrigger": 3,
+            "delayOut": 1,
+            "srFlipflop": 2
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 0,
+            "y": 880
+          }
+        },
+        {
+          "id": "algorithm:calculation",
+          "label": "计算/PID/统计",
+          "kind": "algorithm",
+          "role": "calculation",
+          "source_node_ids": [
+            "312cd2c",
+            "a2f6cc2",
+            "7609548",
+            "528b6c5",
+            "1aa7088",
+            "cfafd05",
+            "48ff852",
+            "8863214",
+            "590a78e",
+            "18cfdf5",
+            "cecb766",
+            "8a5e503",
+            "6006417",
+            "e6773ce",
+            "35ab862",
+            "ec2ba0f",
+            "5e2d9cf"
+          ],
+          "source_node_count": 17,
+          "type_counts": {
+            "subtract": 5,
+            "pid": 2,
+            "enthalpy": 2,
+            "runtime": 1,
+            "multiply": 3,
+            "moisture": 3,
+            "linear": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 340,
+            "y": 880
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "algorithm:calculation->algorithm:logic_timing",
+          "source": "algorithm:calculation",
+          "target": "algorithm:logic_timing",
+          "weight": 13,
+          "source_edges": [
+            {
+              "source_id": "a2f6cc2",
+              "target_id": "1b9f4d9",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "ec2ba0f",
+              "target_id": "1b9f4d9",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "35ab862",
+              "target_id": "8fed3a4",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "312cd2c",
+              "target_id": "f76cc22",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "7609548",
+              "target_id": "aec3c00",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "528b6c5",
+              "target_id": "aec3c00",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "48ff852",
+              "target_id": "bc31a1",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "8863214",
+              "target_id": "4e181d7",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "590a78e",
+              "target_id": "22a7046",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "e6773ce",
+              "target_id": "dd6bfb0",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "6006417",
+              "target_id": "942b576",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e6773ce",
+              "target_id": "a9a2fdb",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "5e2d9cf",
+              "target_id": "fe1d905",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:温湿度_空气参数->algorithm:logic_timing",
+          "source": "point:温湿度_空气参数",
+          "target": "algorithm:logic_timing",
+          "weight": 10,
+          "source_edges": [
+            {
+              "source_id": "f9f9de8",
+              "target_id": "c93acdb",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "38b67d7",
+              "target_id": "c93acdb",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "d6e35f0",
+              "target_id": "4c31492",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "58b22e1",
+              "target_id": "4c31492",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "1f42678",
+              "target_id": "2a657d2",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "6a39c71",
+              "target_id": "40dce9a",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "2322335",
+              "target_id": "7434df1",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "2e4b73a",
+              "target_id": "1209741",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "d6e35f0",
+              "target_id": "bc31a1",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "f9f9de8",
+              "target_id": "4e181d7",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:other_points",
+          "source": "algorithm:logic_timing",
+          "target": "point:other_points",
+          "weight": 8,
+          "source_edges": [
+            {
+              "source_id": "14cfd81",
+              "target_id": "97a29d6",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "ff68bb1",
+              "target_id": "3236ab9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "88efd7",
+              "target_id": "48e7eb5",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "79536a8",
+              "target_id": "7a16c87",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "55aa00d",
+              "target_id": "f0a4a35",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1dd65d2",
+              "target_id": "badb7a0",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e4eb9b9",
+              "target_id": "5aafb54",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "fe43601",
+              "target_id": "cf75fe9",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->subflow:subflow:23f9145",
+          "source": "point:other_points",
+          "target": "subflow:subflow:23f9145",
+          "weight": 8,
+          "source_edges": [
+            {
+              "source_id": "bf5c593",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 3
+            },
+            {
+              "source_id": "7394760",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 5
+            },
+            {
+              "source_id": "571f5e2",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 6
+            },
+            {
+              "source_id": "cd674ce",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 7
+            },
+            {
+              "source_id": "e3d03e0",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 8
+            },
+            {
+              "source_id": "752827c",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 9
+            },
+            {
+              "source_id": "2699e62",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 10
+            },
+            {
+              "source_id": "368e88e",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 11
+            }
+          ]
+        },
+        {
+          "id": "point:送风机->algorithm:logic_timing",
+          "source": "point:送风机",
+          "target": "algorithm:logic_timing",
+          "weight": 8,
+          "source_edges": [
+            {
+              "source_id": "443a131",
+              "target_id": "86c7db4",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "7ac21d9",
+              "target_id": "59afc9c",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "bdcd9c3",
+              "target_id": "59afc9c",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "c14c6b5",
+              "target_id": "a853471",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "8d0625a",
+              "target_id": "a853471",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "4470c11",
+              "target_id": "95de1d0",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "9aae86f",
+              "target_id": "2dc9041",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "94231f7",
+              "target_id": "ff68bb1",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:系统状态_模式",
+          "source": "algorithm:logic_timing",
+          "target": "point:系统状态_模式",
+          "weight": 7,
+          "source_edges": [
+            {
+              "source_id": "d4ea680",
+              "target_id": "e650ec6",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "563cb22",
+              "target_id": "e650ec6",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "9e5ee92",
+              "target_id": "3901a6c",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "9ddd19c",
+              "target_id": "d3aecfa",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "88efd7",
+              "target_id": "5ac7623",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "79536a8",
+              "target_id": "5f2dbc9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "9c8e279",
+              "target_id": "b5a8dc6",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->algorithm:logic_timing",
+          "source": "point:other_points",
+          "target": "algorithm:logic_timing",
+          "weight": 7,
+          "source_edges": [
+            {
+              "source_id": "97a29d6",
+              "target_id": "86c7db4",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1c664ff",
+              "target_id": "b9f5a15",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1c664ff",
+              "target_id": "f6f8472",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "97a29d6",
+              "target_id": "3a1242f",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "287c1c9",
+              "target_id": "8b2c116",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "3e64af0",
+              "target_id": "fe43601",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "deb1815",
+              "target_id": "fe43601",
+              "source_port": 0,
+              "target_port": 2
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->subflow:subflow:65810bf",
+          "source": "point:other_points",
+          "target": "subflow:subflow:65810bf",
+          "weight": 7,
+          "source_edges": [
+            {
+              "source_id": "c567ea6",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 6
+            },
+            {
+              "source_id": "c6bc1c4",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 7
+            },
+            {
+              "source_id": "d7939cb",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 8
+            },
+            {
+              "source_id": "cbba350",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 9
+            },
+            {
+              "source_id": "e706a2f",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 10
+            },
+            {
+              "source_id": "56a8dd1",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 11
+            },
+            {
+              "source_id": "ed51736",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 12
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->algorithm:calculation",
+          "source": "algorithm:logic_timing",
+          "target": "algorithm:calculation",
+          "weight": 5,
+          "source_edges": [
+            {
+              "source_id": "481bfd",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "1209741",
+              "target_id": "48ff852",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "40dce9a",
+              "target_id": "8863214",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "2bab87f",
+              "target_id": "35ab862",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "59afc9c",
+              "target_id": "ec2ba0f",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:加湿控制->algorithm:calculation",
+          "source": "point:加湿控制",
+          "target": "algorithm:calculation",
+          "weight": 5,
+          "source_edges": [
+            {
+              "source_id": "c4aecaf",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 3
+            },
+            {
+              "source_id": "aa13cb9",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 4
+            },
+            {
+              "source_id": "be6210b",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 5
+            },
+            {
+              "source_id": "e07030f",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 6
+            },
+            {
+              "source_id": "824ac6d",
+              "target_id": "cfafd05",
+              "source_port": 0,
+              "target_port": 7
+            }
+          ]
+        },
+        {
+          "id": "point:系统状态_模式->algorithm:logic_timing",
+          "source": "point:系统状态_模式",
+          "target": "algorithm:logic_timing",
+          "weight": 5,
+          "source_edges": [
+            {
+              "source_id": "7eb686b",
+              "target_id": "1f3dd66",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "788c7af",
+              "target_id": "24a9702",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "3774250",
+              "target_id": "844f30e",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "9ad9cc",
+              "target_id": "d4ea680",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e650ec6",
+              "target_id": "7655bf3",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:送风机->algorithm:calculation",
+          "source": "point:送风机",
+          "target": "algorithm:calculation",
+          "weight": 5,
+          "source_edges": [
+            {
+              "source_id": "afb4c74",
+              "target_id": "a2f6cc2",
+              "source_port": 0,
+              "target_port": 3
+            },
+            {
+              "source_id": "c655ab0",
+              "target_id": "a2f6cc2",
+              "source_port": 0,
+              "target_port": 4
+            },
+            {
+              "source_id": "f9a45be",
+              "target_id": "a2f6cc2",
+              "source_port": 0,
+              "target_port": 5
+            },
+            {
+              "source_id": "83eb4ac",
+              "target_id": "a2f6cc2",
+              "source_port": 0,
+              "target_port": 6
+            },
+            {
+              "source_id": "4f8cc18",
+              "target_id": "a2f6cc2",
+              "source_port": 0,
+              "target_port": 7
+            }
+          ]
+        },
+        {
+          "id": "point:冷热水阀_水温->algorithm:logic_timing",
+          "source": "point:冷热水阀_水温",
+          "target": "algorithm:logic_timing",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "4bafeb9",
+              "target_id": "1a74dd2",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "525a393",
+              "target_id": "1a74dd2",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "3b7b49a",
+              "target_id": "dce3c3b",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "b44e2cd",
+              "target_id": "dce3c3b",
+              "source_port": 0,
+              "target_port": 2
+            }
+          ]
+        },
+        {
+          "id": "point:加湿控制->algorithm:logic_timing",
+          "source": "point:加湿控制",
+          "target": "algorithm:logic_timing",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "76ba6aa",
+              "target_id": "7fd99e3",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "2889afd",
+              "target_id": "8fed3a4",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "7361b26",
+              "target_id": "8fed3a4",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "7b70719",
+              "target_id": "e58398",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "point:直膨机_外机->algorithm:logic_timing",
+          "source": "point:直膨机_外机",
+          "target": "algorithm:logic_timing",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "3e2459",
+              "target_id": "2b64aa1",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "550717b",
+              "target_id": "2b64aa1",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "d053c34",
+              "target_id": "e4eb9b9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "d053c34",
+              "target_id": "4bfa20a",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "subflow:subflow:23f9145->point:other_points",
+          "source": "subflow:subflow:23f9145",
+          "target": "point:other_points",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "c91d7ec",
+              "target_id": "cc2de10",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "c91d7ec",
+              "target_id": "42d164d",
+              "source_port": 1,
+              "target_port": 0
+            },
+            {
+              "source_id": "c91d7ec",
+              "target_id": "57004cc",
+              "source_port": 2,
+              "target_port": 0
+            },
+            {
+              "source_id": "c91d7ec",
+              "target_id": "f3f53ad",
+              "source_port": 3,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:温湿度_空气参数",
+          "source": "algorithm:logic_timing",
+          "target": "point:温湿度_空气参数",
+          "weight": 3,
+          "source_edges": [
+            {
+              "source_id": "4e181d7",
+              "target_id": "da53fa",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "bc31a1",
+              "target_id": "e322496",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "4bfa20a",
+              "target_id": "3aa73c9",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:calculation->point:other_points",
+          "source": "algorithm:calculation",
+          "target": "point:other_points",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "cecb766",
+              "target_id": "9a18fc1",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "18cfdf5",
+              "target_id": "e2be0a9",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:冷热水阀_水温",
+          "source": "algorithm:logic_timing",
+          "target": "point:冷热水阀_水温",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "1a74dd2",
+              "target_id": "506b3de",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "dce3c3b",
+              "target_id": "7cbb71b",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:加湿控制",
+          "source": "algorithm:logic_timing",
+          "target": "point:加湿控制",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "8fed3a4",
+              "target_id": "520ef66",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e58398",
+              "target_id": "a7f3409",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:新风_回风_排风阀",
+          "source": "algorithm:logic_timing",
+          "target": "point:新风_回风_排风阀",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "470a2a8",
+              "target_id": "d6900d2",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "a9a2fdb",
+              "target_id": "92faaf0",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "config:constants->subflow:subflow:65810bf",
+          "source": "config:constants",
+          "target": "subflow:subflow:65810bf",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "93ce189",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 2
+            },
+            {
+              "source_id": "93ce189",
+              "target_id": "c7f9c74",
+              "source_port": 0,
+              "target_port": 3
+            }
+          ]
+        },
+        {
+          "id": "config:constants->subflow:subflow:e895edf",
+          "source": "config:constants",
+          "target": "subflow:subflow:e895edf",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "ab6f82a",
+              "target_id": "5ae9f75",
+              "source_port": 0,
+              "target_port": 7
+            },
+            {
+              "source_id": "9d5ce5e",
+              "target_id": "5ae9f75",
+              "source_port": 0,
+              "target_port": 8
+            }
+          ]
+        },
+        {
+          "id": "point:排风_回风机->algorithm:logic_timing",
+          "source": "point:排风_回风机",
+          "target": "algorithm:logic_timing",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "158b798",
+              "target_id": "3a1242f",
+              "source_port": 0,
+              "target_port": 1
+            },
+            {
+              "source_id": "b4894af",
+              "target_id": "53b467d",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "point:送风机->subflow:subflow:e895edf",
+          "source": "point:送风机",
+          "target": "subflow:subflow:e895edf",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "8cd05ad",
+              "target_id": "5ae9f75",
+              "source_port": 0,
+              "target_port": 4
+            },
+            {
+              "source_id": "902dd1",
+              "target_id": "5ae9f75",
+              "source_port": 0,
+              "target_port": 5
+            }
+          ]
+        },
+        {
+          "id": "subflow:subflow:e895edf->point:送风机",
+          "source": "subflow:subflow:e895edf",
+          "target": "point:送风机",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "5ae9f75",
+              "target_id": "3e05472",
+              "source_port": 1,
+              "target_port": 0
+            },
+            {
+              "source_id": "5ae9f75",
+              "target_id": "5e61351",
+              "source_port": 2,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:calculation->point:送风机",
+          "source": "algorithm:calculation",
+          "target": "point:送风机",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "1aa7088",
+              "target_id": "2f16638",
+              "source_port": 1,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:排风_回风机",
+          "source": "algorithm:logic_timing",
+          "target": "point:排风_回风机",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "53b467d",
+              "target_id": "19b9b0d",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:直膨机_外机",
+          "source": "algorithm:logic_timing",
+          "target": "point:直膨机_外机",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "1d3f12d",
+              "target_id": "ea56223",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->point:送风机",
+          "source": "algorithm:logic_timing",
+          "target": "point:送风机",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "2dc9041",
+              "target_id": "cefc693",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:logic_timing->subflow:subflow:23f9145",
+          "source": "algorithm:logic_timing",
+          "target": "subflow:subflow:23f9145",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "8b2c116",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "config:constants->algorithm:logic_timing",
+          "source": "config:constants",
+          "target": "algorithm:logic_timing",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "15b38bd",
+              "target_id": "88efd7",
+              "source_port": 0,
+              "target_port": 2
+            }
+          ]
+        },
+        {
+          "id": "config:constants->subflow:subflow:23f9145",
+          "source": "config:constants",
+          "target": "subflow:subflow:23f9145",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "2ab966c",
+              "target_id": "c91d7ec",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->algorithm:calculation",
+          "source": "point:other_points",
+          "target": "algorithm:calculation",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "5aafb54",
+              "target_id": "18cfdf5",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->point:冷热水阀_水温",
+          "source": "point:other_points",
+          "target": "point:冷热水阀_水温",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "1304934",
+              "target_id": "6221124",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:定时使能->algorithm:calculation",
+          "source": "point:定时使能",
+          "target": "algorithm:calculation",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "70cb51",
+              "target_id": "1aa7088",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "point:温湿度_空气参数->algorithm:calculation",
+          "source": "point:温湿度_空气参数",
+          "target": "algorithm:calculation",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "3aa73c9",
+              "target_id": "18cfdf5",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "point:系统状态_模式->algorithm:calculation",
+          "source": "point:系统状态_模式",
+          "target": "algorithm:calculation",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "788c7af",
+              "target_id": "5e2d9cf",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "subflow:subflow:65810bf->point:other_points",
+          "source": "subflow:subflow:65810bf",
+          "target": "point:other_points",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "c7f9c74",
+              "target_id": "1304934",
+              "source_port": 1,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 339,
+        "module_count": 18,
+        "edge_count": 39,
+        "compression_ratio": 18.83,
+        "unmatched_point_count": 123,
+        "reference_node_count": 92
+      }
+    },
+    "e895fff": {
+      "id": "e895fff",
+      "label": "排风机",
+      "nodes": [
+        {
+          "id": "point:排风_回风机",
+          "label": "排风/回风机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "a024e8f",
+            "96cc1d4",
+            "c60f320",
+            "5ed8113",
+            "8f5b555",
+            "214108",
+            "8e2e932",
+            "3ad752c",
+            "27ae7c1",
+            "84cbc96",
+            "8def7a1",
+            "323838a"
+          ],
+          "source_node_count": 12,
+          "type_counts": {
+            "swInput": 12
+          },
+          "point_count": 12,
+          "matched_point_count": 0,
+          "unmatched_point_count": 12,
+          "sample_points": [
+            "EF1_MC",
+            "M_EF_MC",
+            "EF1_AM",
+            "M_EF_AM",
+            "EF1_CST",
+            "EF1_MF",
+            "EF2_MC",
+            "M_EF_MC"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "config:constants",
+          "label": "配置/常量",
+          "kind": "config",
+          "role": "constants",
+          "source_node_ids": [
+            "935aca5",
+            "3d56cea",
+            "8ce1996",
+            "7e25d0b"
+          ],
+          "source_node_count": 4,
+          "type_counts": {
+            "constInput": 4
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        },
+        {
+          "id": "subflow:subflow:e895edf",
+          "label": "末端组空送风机标准控制",
+          "kind": "subflow",
+          "role": "control_module",
+          "source_node_ids": [
+            "a66dadc",
+            "cdc1e10"
+          ],
+          "source_node_count": 2,
+          "type_counts": {
+            "subflow:e895edf": 2
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 680,
+            "y": 0
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "config:constants->subflow:subflow:e895edf",
+          "source": "config:constants",
+          "target": "subflow:subflow:e895edf",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "935aca5",
+              "target_id": "a66dadc",
+              "source_port": 0,
+              "target_port": 7
+            },
+            {
+              "source_id": "3d56cea",
+              "target_id": "a66dadc",
+              "source_port": 0,
+              "target_port": 8
+            },
+            {
+              "source_id": "8ce1996",
+              "target_id": "cdc1e10",
+              "source_port": 0,
+              "target_port": 7
+            },
+            {
+              "source_id": "7e25d0b",
+              "target_id": "cdc1e10",
+              "source_port": 0,
+              "target_port": 8
+            }
+          ]
+        },
+        {
+          "id": "point:排风_回风机->subflow:subflow:e895edf",
+          "source": "point:排风_回风机",
+          "target": "subflow:subflow:e895edf",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "c60f320",
+              "target_id": "a66dadc",
+              "source_port": 0,
+              "target_port": 4
+            },
+            {
+              "source_id": "a024e8f",
+              "target_id": "a66dadc",
+              "source_port": 0,
+              "target_port": 5
+            },
+            {
+              "source_id": "27ae7c1",
+              "target_id": "cdc1e10",
+              "source_port": 0,
+              "target_port": 4
+            },
+            {
+              "source_id": "8e2e932",
+              "target_id": "cdc1e10",
+              "source_port": 0,
+              "target_port": 5
+            }
+          ]
+        },
+        {
+          "id": "subflow:subflow:e895edf->point:排风_回风机",
+          "source": "subflow:subflow:e895edf",
+          "target": "point:排风_回风机",
+          "weight": 4,
+          "source_edges": [
+            {
+              "source_id": "a66dadc",
+              "target_id": "8f5b555",
+              "source_port": 1,
+              "target_port": 0
+            },
+            {
+              "source_id": "a66dadc",
+              "target_id": "214108",
+              "source_port": 2,
+              "target_port": 0
+            },
+            {
+              "source_id": "cdc1e10",
+              "target_id": "8def7a1",
+              "source_port": 1,
+              "target_port": 0
+            },
+            {
+              "source_id": "cdc1e10",
+              "target_id": "323838a",
+              "source_port": 2,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 30,
+        "module_count": 3,
+        "edge_count": 3,
+        "compression_ratio": 10.0,
+        "unmatched_point_count": 12,
+        "reference_node_count": 12
+      }
+    },
+    "f7d6e97": {
+      "id": "f7d6e97",
+      "label": "定时",
+      "nodes": [
+        {
+          "id": "point:other_points",
+          "label": "其他软件点/设定点",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "e92b922"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "swInput": 1
+          },
+          "point_count": 1,
+          "matched_point_count": 0,
+          "unmatched_point_count": 1,
+          "sample_points": [
+            "SP0"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:定时使能",
+          "label": "定时使能",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "310b0e8",
+            "863726c"
+          ],
+          "source_node_count": 2,
+          "type_counts": {
+            "swInput": 2
+          },
+          "point_count": 2,
+          "matched_point_count": 0,
+          "unmatched_point_count": 2,
+          "sample_points": [
+            "TIME_EN",
+            "TIME_CST"
+          ],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        },
+        {
+          "id": "algorithm:logic_timing",
+          "label": "联锁/时序/状态位",
+          "kind": "algorithm",
+          "role": "logic_timing",
+          "source_node_ids": [
+            "b4074bf"
+          ],
+          "source_node_count": 1,
+          "type_counts": {
+            "logic": 1
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 680,
+            "y": 0
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "algorithm:logic_timing->point:定时使能",
+          "source": "algorithm:logic_timing",
+          "target": "point:定时使能",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "b4074bf",
+              "target_id": "863726c",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->algorithm:logic_timing",
+          "source": "point:other_points",
+          "target": "algorithm:logic_timing",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "e92b922",
+              "target_id": "b4074bf",
+              "source_port": 0,
+              "target_port": 1
+            }
+          ]
+        },
+        {
+          "id": "point:定时使能->algorithm:logic_timing",
+          "source": "point:定时使能",
+          "target": "algorithm:logic_timing",
+          "weight": 1,
+          "source_edges": [
+            {
+              "source_id": "310b0e8",
+              "target_id": "b4074bf",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 4,
+        "module_count": 3,
+        "edge_count": 3,
+        "compression_ratio": 1.33,
+        "unmatched_point_count": 3,
+        "reference_node_count": 0
+      }
+    },
+    "a4b914": {
+      "id": "a4b914",
+      "label": "直膨机故障",
+      "nodes": [
+        {
+          "id": "interface:modbusOutput",
+          "label": "通讯点",
+          "kind": "interface",
+          "role": "modbusOutput",
+          "source_node_ids": [
+            "b5afda2",
+            "27127fd",
+            "dc29b78",
+            "92f78a0",
+            "e049d33",
+            "47d5562",
+            "5ae9a49"
+          ],
+          "source_node_count": 7,
+          "type_counts": {
+            "modbusOutput": 7
+          },
+          "point_count": 7,
+          "matched_point_count": 0,
+          "unmatched_point_count": 7,
+          "sample_points": [
+            "直膨804通讯故障",
+            "直膨803故障",
+            "直膨805故障",
+            "Modbus IO_800",
+            "Modbus IO_801",
+            "直膨809故障",
+            "直膨820故障"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:直膨机_外机",
+          "label": "直膨机/外机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "cc3e3aa",
+            "35adbab",
+            "66c91c9",
+            "83768d2",
+            "413a6b5",
+            "ddb5cec",
+            "6bc6fcf"
+          ],
+          "source_node_count": 7,
+          "type_counts": {
+            "swInput": 7
+          },
+          "point_count": 7,
+          "matched_point_count": 0,
+          "unmatched_point_count": 7,
+          "sample_points": [
+            "ZP804",
+            "ZP805",
+            "ZP800",
+            "ZP801",
+            "ZP803",
+            "ZP809",
+            "ZP820"
+          ],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "interface:modbusOutput->point:直膨机_外机",
+          "source": "interface:modbusOutput",
+          "target": "point:直膨机_外机",
+          "weight": 7,
+          "source_edges": [
+            {
+              "source_id": "b5afda2",
+              "target_id": "cc3e3aa",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "dc29b78",
+              "target_id": "35adbab",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "92f78a0",
+              "target_id": "66c91c9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "e049d33",
+              "target_id": "83768d2",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "27127fd",
+              "target_id": "413a6b5",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "47d5562",
+              "target_id": "ddb5cec",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "5ae9a49",
+              "target_id": "6bc6fcf",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 14,
+        "module_count": 2,
+        "edge_count": 1,
+        "compression_ratio": 7.0,
+        "unmatched_point_count": 14,
+        "reference_node_count": 0
+      }
+    },
+    "572c1e3": {
+      "id": "572c1e3",
+      "label": "直膨机状态",
+      "nodes": [
+        {
+          "id": "interface:modbusOutput",
+          "label": "通讯点",
+          "kind": "interface",
+          "role": "modbusOutput",
+          "source_node_ids": [
+            "ba2b32d",
+            "7e1d85d",
+            "4f88ea3",
+            "952d4a6",
+            "21fb011",
+            "524b5d3",
+            "62ea511",
+            "7558171",
+            "9a88018",
+            "7e17a2f",
+            "aa71900",
+            "4fa76da",
+            "b145ed",
+            "4e39208",
+            "dc4e974",
+            "a31b33e",
+            "ea833da",
+            "975c608",
+            "2c9fc3c",
+            "6c7a0b5",
+            "cfaefbf",
+            "ce77638",
+            "bc78e17",
+            "47cd4b7",
+            "494d194",
+            "8ec808b",
+            "9d06f4f",
+            "5e85809",
+            "acee6ee",
+            "df73515",
+            "49200ef",
+            "56b7916",
+            "94cb553",
+            "b86d0c3",
+            "906950f",
+            "924d917",
+            "c869a5b",
+            "c705187",
+            "d1da292",
+            "c40bf4",
+            "d56bb98",
+            "fa8b352",
+            "f55b4bb",
+            "82ed968",
+            "2d76c3",
+            "fc3aa70",
+            "b42041e",
+            "32f1d1a",
+            "a4e4973",
+            "bb43b12",
+            "4edfe3d",
+            "aac9e3c",
+            "f2cf3ac",
+            "4128814",
+            "7e96e08",
+            "639f005",
+            "e9d24a8",
+            "74cf388",
+            "7037d1a",
+            "c0c2cfe",
+            "99e2a82",
+            "85c1d58"
+          ],
+          "source_node_count": 62,
+          "type_counts": {
+            "modbusOutput": 62
+          },
+          "point_count": 62,
+          "matched_point_count": 16,
+          "unmatched_point_count": 46,
+          "sample_points": [
+            "直膨机膨胀阀开度1",
+            "直膨机膨胀阀开度2",
+            "直膨机膨胀阀开度3",
+            "直膨机膨胀阀开度4",
+            "直膨机膨胀阀开度5",
+            "外机台数",
+            "系统匹数",
+            "外机模式"
+          ],
+          "position": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:other_points",
+          "label": "其他软件点/设定点",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "17d4f7d",
+            "a20b2aa",
+            "a04baa6",
+            "9a90980",
+            "fc000be",
+            "8fd53f9",
+            "19961bb",
+            "2f11c9",
+            "cb79295",
+            "e8eafc7",
+            "62e8ee6",
+            "d154cad",
+            "39d4e36",
+            "4353368",
+            "d607a96",
+            "1801c43",
+            "1431aba",
+            "fe1bc1d",
+            "7d52255",
+            "19be0f9",
+            "55c1c6d",
+            "674f80f",
+            "3c17794",
+            "cc462e6",
+            "bf1132e",
+            "c739849",
+            "8dff46c",
+            "bf5114",
+            "a1b249d",
+            "1ef5740",
+            "c89f5d2",
+            "e174295",
+            "25ff474",
+            "5ee6281",
+            "c284f3e",
+            "b9ce5b",
+            "5cfd93",
+            "2fdc54c",
+            "c268b7c",
+            "98930fe",
+            "12a7f17",
+            "947fa39",
+            "bdd025e",
+            "87221a3",
+            "a574a4b",
+            "877ab9d",
+            "bf8fb9a",
+            "37e55ef",
+            "2a11b10",
+            "4c010f4",
+            "d6bd5ce",
+            "d1de52a",
+            "26e0cff",
+            "10b7d88",
+            "863d653",
+            "f5fbefd",
+            "5eecbd7",
+            "5cb00d0",
+            "92955a3",
+            "fddfc57",
+            "b67776c",
+            "95055ed",
+            "4131abe",
+            "da01958",
+            "bd07fe6",
+            "190cf01",
+            "6f6acea",
+            "8bb6711",
+            "d4f3b17",
+            "c5c9544",
+            "6b43280",
+            "71f3d2d",
+            "311ba57",
+            "291137f",
+            "e8fa26f",
+            "a7dd0fe",
+            "1a1411c",
+            "1779c47",
+            "cff53c9",
+            "22f2fb1"
+          ],
+          "source_node_count": 80,
+          "type_counts": {
+            "swInput": 80
+          },
+          "point_count": 80,
+          "matched_point_count": 24,
+          "unmatched_point_count": 56,
+          "sample_points": [
+            "TCS",
+            "TES",
+            "F1",
+            "F2",
+            "F3",
+            "E1",
+            "E2",
+            "E3"
+          ],
+          "position": {
+            "x": 340,
+            "y": 0
+          }
+        },
+        {
+          "id": "point:直膨机_外机",
+          "label": "直膨机/外机",
+          "kind": "points",
+          "role": "software_points",
+          "source_node_ids": [
+            "f963716",
+            "188369",
+            "955a71f",
+            "24f4887",
+            "7dcc6ab",
+            "ceae1ad",
+            "16887a9",
+            "d7d1e27"
+          ],
+          "source_node_count": 8,
+          "type_counts": {
+            "swInput": 8
+          },
+          "point_count": 8,
+          "matched_point_count": 0,
+          "unmatched_point_count": 8,
+          "sample_points": [
+            "EXV1",
+            "EXV2",
+            "EXV3",
+            "EXV4",
+            "EXV5",
+            "ZP_A1",
+            "ZP_A2",
+            "ZP_A3"
+          ],
+          "position": {
+            "x": 680,
+            "y": 0
+          }
+        },
+        {
+          "id": "algorithm:other",
+          "label": "其他逻辑",
+          "kind": "algorithm",
+          "role": "other",
+          "source_node_ids": [
+            "76a9ce4",
+            "a0be06f"
+          ],
+          "source_node_count": 2,
+          "type_counts": {
+            "comment": 2
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 1020,
+            "y": 0
+          }
+        },
+        {
+          "id": "algorithm:calculation",
+          "label": "计算/PID/统计",
+          "kind": "algorithm",
+          "role": "calculation",
+          "source_node_ids": [
+            "d0f43d2",
+            "f961fa2"
+          ],
+          "source_node_count": 2,
+          "type_counts": {
+            "multiply": 2
+          },
+          "point_count": 0,
+          "matched_point_count": 0,
+          "unmatched_point_count": 0,
+          "sample_points": [],
+          "position": {
+            "x": 0,
+            "y": 220
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "interface:modbusOutput->point:other_points",
+          "source": "interface:modbusOutput",
+          "target": "point:other_points",
+          "weight": 54,
+          "source_edges": [
+            {
+              "source_id": "9a88018",
+              "target_id": "17d4f7d",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "7e17a2f",
+              "target_id": "a20b2aa",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "aa71900",
+              "target_id": "a04baa6",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "4fa76da",
+              "target_id": "9a90980",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "b145ed",
+              "target_id": "fc000be",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "4e39208",
+              "target_id": "8fd53f9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "dc4e974",
+              "target_id": "19961bb",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "a31b33e",
+              "target_id": "2f11c9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "ea833da",
+              "target_id": "cb79295",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "975c608",
+              "target_id": "e8eafc7",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "2c9fc3c",
+              "target_id": "62e8ee6",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "6c7a0b5",
+              "target_id": "d154cad",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "cfaefbf",
+              "target_id": "39d4e36",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "ce77638",
+              "target_id": "4353368",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "bc78e17",
+              "target_id": "d607a96",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "47cd4b7",
+              "target_id": "1801c43",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "494d194",
+              "target_id": "1431aba",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "8ec808b",
+              "target_id": "fe1bc1d",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "9d06f4f",
+              "target_id": "7d52255",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "5e85809",
+              "target_id": "19be0f9",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "interface:modbusOutput->point:直膨机_外机",
+          "source": "interface:modbusOutput",
+          "target": "point:直膨机_外机",
+          "weight": 8,
+          "source_edges": [
+            {
+              "source_id": "ba2b32d",
+              "target_id": "f963716",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "7e1d85d",
+              "target_id": "188369",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "4f88ea3",
+              "target_id": "955a71f",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "952d4a6",
+              "target_id": "24f4887",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "21fb011",
+              "target_id": "7dcc6ab",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "524b5d3",
+              "target_id": "ceae1ad",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "62ea511",
+              "target_id": "16887a9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "7558171",
+              "target_id": "d7d1e27",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "algorithm:calculation->point:other_points",
+          "source": "algorithm:calculation",
+          "target": "point:other_points",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "d0f43d2",
+              "target_id": "cff53c9",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "f961fa2",
+              "target_id": "22f2fb1",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        },
+        {
+          "id": "point:other_points->algorithm:calculation",
+          "source": "point:other_points",
+          "target": "algorithm:calculation",
+          "weight": 2,
+          "source_edges": [
+            {
+              "source_id": "17d4f7d",
+              "target_id": "d0f43d2",
+              "source_port": 0,
+              "target_port": 0
+            },
+            {
+              "source_id": "a20b2aa",
+              "target_id": "f961fa2",
+              "source_port": 0,
+              "target_port": 0
+            }
+          ]
+        }
+      ],
+      "metrics": {
+        "source_node_count": 154,
+        "module_count": 5,
+        "edge_count": 4,
+        "compression_ratio": 30.8,
+        "unmatched_point_count": 110,
+        "reference_node_count": 0
+      }
+    }
+  },
+  "trace": {
+    "object_count": 992,
+    "tab_count": 6,
+    "subflow_count": 6,
+    "edge_count": 813
+  }
+}

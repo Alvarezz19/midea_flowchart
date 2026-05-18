@@ -1,0 +1,26 @@
+{
+  "name": "ahu",
+  "family_keywords": ["AHU"],
+  "tab_roles": [
+    {"contains": ["IO", "通讯"], "role": "io_comm", "label": "IO/通讯"},
+    {"contains": ["控制"], "role": "control", "label": "控制"},
+    {"contains": ["定时"], "role": "schedule", "label": "定时"},
+    {"contains": ["直膨机状态"], "role": "dx_status", "label": "直膨机状态"},
+    {"contains": ["直膨机故障"], "role": "dx_fault", "label": "直膨机故障"},
+    {"contains": ["排风机"], "role": "exhaust_fan", "label": "排风机"}
+  ],
+  "point_groups": [
+    {"prefixes": ["SYS", "M_SYS"], "keywords": ["系统", "模式"], "label": "系统状态/模式"},
+    {"prefixes": ["TIME"], "keywords": ["定时"], "label": "定时使能"},
+    {"prefixes": ["ZP", "EXV"], "keywords": ["直膨", "外机", "压缩机", "膨胀阀"], "label": "直膨机/外机"},
+    {"prefixes": ["SF"], "keywords": ["送风机"], "label": "送风机"},
+    {"prefixes": ["EF", "RF", "DF"], "keywords": ["排风机", "回风机"], "label": "排风/回风机"},
+    {"prefixes": ["SA", "RA", "FA", "OA"], "keywords": ["送风温度", "回风温度", "湿度", "空气"], "label": "温湿度/空气参数"},
+    {"prefixes": ["FAD", "RAD", "AD", "OAD", "SAD", "DAD"], "keywords": ["新风阀", "回风阀", "排风阀", "风阀"], "label": "新风/回风/排风阀"},
+    {"prefixes": ["CWV", "HWV", "CHV", "CW"], "keywords": ["冷水阀", "热水阀", "冷热水阀"], "label": "冷热水阀/水温"},
+    {"prefixes": ["HUM"], "keywords": ["加湿"], "label": "加湿控制"},
+    {"prefixes": ["EH", "EHEAT"], "keywords": ["电加热", "电预热"], "label": "电加热"},
+    {"prefixes": ["CO2"], "keywords": ["CO2"], "label": "CO2控制"},
+    {"prefixes": ["TX", "AFP", "PFIL", "SFIL", "HFIL"], "keywords": ["报警", "保护", "滤网", "防冻"], "label": "报警/保护/滤网"}
+  ]
+}
