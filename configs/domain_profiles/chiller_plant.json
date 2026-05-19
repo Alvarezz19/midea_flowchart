@@ -5,10 +5,10 @@
   "tab_roles": [
     {"contains": ["硬接", "通讯"], "role": "io_comm", "label": "硬接&通讯信号"},
     {"contains": ["主机"], "role": "chiller", "label": "主机控制"},
+    {"contains": ["变频"], "role": "frequency", "label": "变频控制"},
     {"contains": ["冷却塔"], "role": "cooling_tower", "label": "冷却塔控制"},
     {"contains": ["冷冻", "冷却泵"], "role": "pump", "label": "水泵控制"},
     {"contains": ["加减载", "轮询"], "role": "loading_polling", "label": "加减载&轮询"},
-    {"contains": ["变频"], "role": "frequency", "label": "变频控制"},
     {"contains": ["动作先后"], "role": "sequence", "label": "动作顺序判定"}
   ],
   "point_groups": [
