@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>美的暖通流程图生成工具</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">M</div>
+          <div>
+            <div class="brand-title">暖通流程图生成</div>
+            <div class="brand-subtitle" id="project-subtitle">等待加载</div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <select id="sample-select" aria-label="示例项目"></select>
+          <label class="file-button">
+            上传 JSON
+            <input id="file-input" type="file" accept=".json,application/json" />
+          </label>
+          <input id="search-input" type="search" placeholder="搜索点位或模块" />
+          <div class="segmented" aria-label="视图切换">
+            <button class="active" data-view="overview">总览</button>
+            <button data-view="raw">原始</button>
+          </div>
+          <button id="export-button" class="ghost-button">导出 JSON</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="sidebar">
+          <section class="panel">
+            <h2>项目结构</h2>
+            <div id="tab-list" class="nav-list"></div>
+          </section>
+          <section class="panel issue-panel">
+            <h2>命名异常</h2>
+            <div id="issue-list" class="issue-list"></div>
+          </section>
+        </aside>
+
+        <section class="canvas-wrap">
+          <div id="search-results" class="search-results hidden"></div>
+          <svg id="flow-canvas" role="img" aria-label="流程图画布"></svg>
+        </section>
+
+        <aside class="details">
+          <section class="panel detail-panel">
+            <h2 id="detail-title">详情</h2>
+            <div id="detail-content"></div>
+          </section>
+        </aside>
+      </main>
+
+      <footer class="statusbar">
+        <span id="status-text">未加载</span>
+        <span id="stats-text"></span>
+      </footer>
+    </div>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -23,6 +23,24 @@ POINT_NODE_TYPES = {"swInput", "hwInput", "hwOutput", "modbusOutput", "quote"}
 def load_project(path: str | Path, profiles_dir: str | Path = "configs/domain_profiles") -> ProjectModel:
     source_path = Path(path)
     raw_objects = _read_project_json(source_path)
+    return load_project_from_objects(raw_objects, source_path, profiles_dir)
+
+
+def load_project_from_text(
+    content: str,
+    source_path: str | Path = "<uploaded>",
+    profiles_dir: str | Path = "configs/domain_profiles",
+) -> ProjectModel:
+    raw_objects = _read_project_json_text(content, Path(source_path))
+    return load_project_from_objects(raw_objects, source_path, profiles_dir)
+
+
+def load_project_from_objects(
+    raw_objects: list[dict[str, Any]],
+    source_path: str | Path = "<memory>",
+    profiles_dir: str | Path = "configs/domain_profiles",
+) -> ProjectModel:
+    source_path = Path(source_path)
     project = ProjectModel(source_path=source_path, raw_count=len(raw_objects))
 
     _collect_tabs_and_subflows(project, raw_objects)
@@ -40,16 +58,23 @@ def load_project(path: str | Path, profiles_dir: str | Path = "configs/domain_pr
 
 def _read_project_json(path: Path) -> list[dict[str, Any]]:
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        return _read_project_json_text(path.read_text(encoding="utf-8"), path)
     except json.JSONDecodeError as exc:
         raise ValueError(f"JSON 格式错误：{path}，第 {exc.lineno} 行第 {exc.colno} 列") from exc
+
+
+def _read_project_json_text(content: str, source_path: Path) -> list[dict[str, Any]]:
+    try:
+        data = json.loads(content)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"JSON 格式错误：{source_path}，第 {exc.lineno} 行第 {exc.colno} 列") from exc
     if not isinstance(data, list):
-        raise ValueError(f"JSON 顶层必须是数组：{path}")
+        raise ValueError(f"JSON 顶层必须是数组：{source_path}")
     for index, item in enumerate(data):
         if not isinstance(item, dict):
-            raise ValueError(f"JSON 顶层第 {index} 项必须是对象：{path}")
+            raise ValueError(f"JSON 顶层第 {index} 项必须是对象：{source_path}")
         if "id" not in item or "type" not in item:
-            raise ValueError(f"JSON 顶层第 {index} 项缺少 id 或 type：{path}")
+            raise ValueError(f"JSON 顶层第 {index} 项缺少 id 或 type：{source_path}")
     return data
 
 
