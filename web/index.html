@@ -22,9 +22,11 @@
             上传 JSON
             <input id="file-input" type="file" accept=".json,application/json" />
           </label>
+          <button id="paste-button" class="ghost-button">粘贴 JSON</button>
           <input id="search-input" type="search" placeholder="搜索点位或模块" />
           <div class="segmented" aria-label="视图切换">
             <button class="active" data-view="overview">总览</button>
+            <button data-view="detail">详情</button>
             <button data-view="raw">原始</button>
           </div>
           <button id="export-button" class="ghost-button">导出 JSON</button>
@@ -44,6 +46,11 @@
         </aside>
 
         <section class="canvas-wrap">
+          <button id="back-button" class="canvas-back hidden">返回总览</button>
+          <div id="edge-mode-controls" class="edge-mode-controls hidden" aria-label="连线显示模式">
+            <button class="active" data-edge-mode="primary">主链路</button>
+            <button data-edge-mode="support">支撑连线</button>
+          </div>
           <div id="search-results" class="search-results hidden"></div>
           <svg id="flow-canvas" role="img" aria-label="流程图画布"></svg>
         </section>
@@ -61,6 +68,19 @@
         <span id="stats-text"></span>
       </footer>
     </div>
-    <script src="/app.js"></script>
+    <div id="paste-dialog" class="dialog-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="paste-title">
+      <div class="dialog">
+        <div class="dialog-header">
+          <h2 id="paste-title">粘贴 JSON</h2>
+          <button id="paste-close" class="icon-button" aria-label="关闭">×</button>
+        </div>
+        <textarea id="paste-textarea" spellcheck="false" placeholder="粘贴美的编程平台导出的 JSON 数组"></textarea>
+        <div class="dialog-actions">
+          <button id="paste-submit">解析</button>
+          <button id="paste-cancel" class="ghost-button">取消</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/app.js"></script>
   </body>
 </html>

@@ -80,5 +80,88 @@ class Phase4InteractionDataTests(unittest.TestCase):
         self.assertTrue(view["tabs"][0]["rawNodes"])
 
 
+class Phase5DetailGraphTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        matcher = NamingMatcher(ROOT / "data/naming_rules.json")
+        project = match_project_naming(load_project(ROOT / "programs/AHU程序/三山经开区/flows_20251210190941.json"), matcher)
+        cls.view = build_project_view(project)
+
+    def _tab(self, role: str) -> dict:
+        return next(tab for tab in self.view["tabs"] if tab["role"] == role)
+
+    def test_control_tab_uses_aggregated_module_graph(self) -> None:
+        tab = self._tab("control")
+        graph = tab["detailGraph"]
+        node_ids = {node["id"] for node in graph["nodes"]}
+        self.assertEqual(graph["level"], "L2")
+        self.assertEqual(graph["layout"], "module_flow")
+        self.assertIn("system", node_ids)
+        self.assertIn("fan_start", node_ids)
+        self.assertIn("temperature", node_ids)
+        self.assertIn("valve", node_ids)
+        self.assertLess(len(graph["nodes"]), 20)
+        self.assertGreater(len(graph["edges"]), 0)
+
+    def test_io_comm_tab_uses_signal_boundary_graph(self) -> None:
+        tab = self._tab("io_comm")
+        graph = tab["detailGraph"]
+        node_ids = {node["id"] for node in graph["nodes"]}
+        self.assertEqual(graph["layout"], "signal_flow")
+        self.assertIn("field_input", node_ids)
+        self.assertIn("comm_input", node_ids)
+        self.assertIn("internal", node_ids)
+        self.assertIn("physical_output", node_ids)
+        self.assertIn("comm_output", node_ids)
+
+    def test_schedule_tab_uses_compact_logic_graph(self) -> None:
+        tab = self._tab("schedule")
+        graph = tab["detailGraph"]
+        self.assertEqual(graph["layout"], "compact_logic")
+        self.assertEqual([node["id"] for node in graph["nodes"]], ["timer_input", "timer_logic", "timer_output"])
+        self.assertIn("TIME_CST", graph["note"])
+
+    def test_dx_status_tab_has_matrix(self) -> None:
+        tab = self._tab("dx_status")
+        self.assertEqual(tab["detailGraph"]["layout"], "mapping_matrix")
+        matrix = tab["statusMatrix"]
+        self.assertIsNotNone(matrix)
+        self.assertGreaterEqual(matrix["columnCount"], 4)
+        self.assertGreaterEqual(matrix["rowCount"], 10)
+        row_names = {row["metric"] for row in matrix["rows"]}
+        self.assertIn("软件版本", row_names)
+        self.assertIn("冷凝压力", row_names)
+
+    def test_ahu_detail_edges_use_curated_business_links(self) -> None:
+        control = self._tab("control")
+        self.assertLessEqual(len(control["detailGraph"]["edges"]), 12)
+        self.assertTrue(all(edge["relationType"] == "profile_rule" for edge in control["detailGraph"]["edges"]))
+        for edge in control["detailGraph"]["edges"]:
+            self.assertIn("directSupportCount", edge)
+            self.assertIn("reverseSupportCount", edge)
+            self.assertIn(edge["supportDirection"], {"direct", "reverse", "mixed", "none"})
+            self.assertEqual(edge["supportCount"], edge["directSupportCount"] + edge["reverseSupportCount"])
+        self.assertIn("supportEdges", control["detailGraph"])
+        self.assertGreater(len(control["detailGraph"]["supportEdges"]), len(control["detailGraph"]["edges"]))
+
+        dx_status = self._tab("dx_status")
+        self.assertEqual(
+            [(edge["source"], edge["target"]) for edge in dx_status["detailGraph"]["edges"]],
+            [("dx_register", "dx_convert"), ("dx_convert", "dx_standard")],
+        )
+
+    def test_all_samples_have_detail_graph_and_raw_trace(self) -> None:
+        matcher = NamingMatcher(ROOT / "data/naming_rules.json")
+        for path in sorted((ROOT / "programs").rglob("*.json")):
+            with self.subTest(path=path):
+                view = build_project_view(match_project_naming(load_project(path), matcher))
+                for tab in view["tabs"]:
+                    self.assertIn("detailGraph", tab)
+                    self.assertIn("rawTrace", tab)
+                    self.assertIn("nodes", tab["detailGraph"])
+                    self.assertIn("edges", tab["detailGraph"])
+                    self.assertIn("supportEdges", tab["detailGraph"])
+
+
 if __name__ == "__main__":
     unittest.main()
