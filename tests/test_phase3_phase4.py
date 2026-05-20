@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -83,8 +85,8 @@ class Phase4InteractionDataTests(unittest.TestCase):
 class Phase5DetailGraphTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        matcher = NamingMatcher(ROOT / "data/naming_rules.json")
-        project = match_project_naming(load_project(ROOT / "programs/AHU程序/三山经开区/flows_20251210190941.json"), matcher)
+        cls.matcher = NamingMatcher(ROOT / "data/naming_rules.json")
+        project = match_project_naming(load_project(ROOT / "programs/AHU程序/三山经开区/flows_20251210190941.json"), cls.matcher)
         cls.view = build_project_view(project)
 
     def _tab(self, role: str) -> dict:
@@ -161,6 +163,29 @@ class Phase5DetailGraphTests(unittest.TestCase):
                     self.assertIn("nodes", tab["detailGraph"])
                     self.assertIn("edges", tab["detailGraph"])
                     self.assertIn("supportEdges", tab["detailGraph"])
+
+    def test_ahu_declarative_graph_rules_come_from_profile(self) -> None:
+        profile = json.loads((ROOT / "configs/domain_profiles/ahu.json").read_text(encoding="utf-8"))
+        profile["overview"]["role_meta"] = {"io_comm": {"label": "现场输入配置"}}
+        profile["overview"]["edges"][0]["label"] = "自定义总览链路"
+        profile["detail"]["module_meta"] = {"field_input": {"label": "现场采集"}}
+        profile["detail"]["profile_edges"]["io_comm"] = [["field_input", "internal"]]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            profile_path = Path(tmp) / "ahu.json"
+            profile_path.write_text(json.dumps(profile, ensure_ascii=False), encoding="utf-8")
+            project = match_project_naming(
+                load_project(ROOT / "programs/AHU程序/三山经开区/flows_20251210190941.json", profiles_dir=tmp),
+                self.matcher,
+            )
+            view = build_project_view(project)
+
+        io_node = next(node for node in view["overview"]["nodes"] if node["role"] == "io_comm")
+        io_tab = next(tab for tab in view["tabs"] if tab["role"] == "io_comm")
+        self.assertEqual(io_node["label"], "现场输入配置")
+        self.assertIn("自定义总览链路", {edge["label"] for edge in view["overview"]["edges"]})
+        self.assertEqual(next(node for node in io_tab["detailGraph"]["nodes"] if node["id"] == "field_input")["label"], "现场采集")
+        self.assertEqual([(edge["source"], edge["target"]) for edge in io_tab["detailGraph"]["edges"]], [("field_input", "internal")])
 
 
 if __name__ == "__main__":

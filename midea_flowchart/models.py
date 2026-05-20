@@ -98,6 +98,7 @@ class ProjectModel:
     module_instances: dict[str, ModuleInstanceModel] = field(default_factory=dict)
     diagnostics: list[Diagnostic] = field(default_factory=list)
     profile_name: str = "generic"
+    profile_config: dict[str, Any] = field(default_factory=dict)
     naming_stats: dict[str, int] = field(default_factory=dict)
 
     @property

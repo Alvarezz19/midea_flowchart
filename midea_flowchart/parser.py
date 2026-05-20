@@ -46,6 +46,7 @@ def load_project_from_objects(
     _collect_tabs_and_subflows(project, raw_objects)
     profile = detect_profile(source_path, project.tabs, load_profiles(Path(profiles_dir)))
     project.profile_name = profile.name if profile else "generic"
+    project.profile_config = profile.raw if profile else {}
     assign_tab_roles(project.tabs, profile)
 
     all_ids = _collect_nodes(project, raw_objects)

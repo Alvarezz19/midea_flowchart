@@ -5,7 +5,7 @@ from typing import Any
 from .serializers import point_search_text
 
 
-ROLE_META: dict[str, dict[str, str]] = {
+DEFAULT_ROLE_META: dict[str, dict[str, str]] = {
     "io_comm": {"label": "IO/通讯", "kind": "boundary"},
     "control": {"label": "控制", "kind": "control"},
     "schedule": {"label": "定时", "kind": "schedule"},
@@ -15,19 +15,19 @@ ROLE_META: dict[str, dict[str, str]] = {
     "unknown_tab": {"label": "未识别页签", "kind": "unknown"},
 }
 
-AHU_ROLE_ORDER = ["io_comm", "schedule", "dx_status", "control", "exhaust_fan", "dx_fault", "unknown_tab"]
+DEFAULT_ROLE_ORDER = ["io_comm", "schedule", "dx_status", "control", "exhaust_fan", "dx_fault", "unknown_tab"]
 
-AHU_RELATIONS = [
-    ("io_comm", "control", "现场/通讯点位进入控制逻辑"),
-    ("schedule", "control", "定时使能参与控制判断"),
-    ("dx_status", "control", "直膨机状态反馈参与控制"),
-    ("control", "io_comm", "控制结果写回输出和通讯点"),
-    ("io_comm", "dx_status", "通讯寄存器支撑直膨状态解析"),
-    ("dx_fault", "control", "直膨故障参与联锁保护"),
-    ("control", "exhaust_fan", "控制逻辑生成排风机命令"),
+DEFAULT_OVERVIEW_EDGES = [
+    {"sourceRole": "io_comm", "targetRole": "control", "label": "现场/通讯点位进入控制逻辑"},
+    {"sourceRole": "schedule", "targetRole": "control", "label": "定时使能参与控制判断"},
+    {"sourceRole": "dx_status", "targetRole": "control", "label": "直膨机状态反馈参与控制"},
+    {"sourceRole": "control", "targetRole": "io_comm", "label": "控制结果写回输出和通讯点"},
+    {"sourceRole": "io_comm", "targetRole": "dx_status", "label": "通讯寄存器支撑直膨状态解析"},
+    {"sourceRole": "dx_fault", "targetRole": "control", "label": "直膨故障参与联锁保护"},
+    {"sourceRole": "control", "targetRole": "exhaust_fan", "label": "控制逻辑生成排风机命令"},
 ]
 
-MODULE_KIND_META: dict[str, dict[str, str]] = {
+DEFAULT_MODULE_META: dict[str, dict[str, str]] = {
     "field_input": {"label": "物理输入", "kind": "boundary"},
     "comm_input": {"label": "通讯输入", "kind": "communication"},
     "reference": {"label": "调用信号", "kind": "boundary"},
@@ -55,7 +55,7 @@ MODULE_KIND_META: dict[str, dict[str, str]] = {
     "dx_standard": {"label": "标准状态点 / BACnet 点", "kind": "internal"},
 }
 
-AHU_CONTROL_MODULE_ORDER = [
+DEFAULT_CONTROL_MODULE_ORDER = [
     "system",
     "schedule_enable",
     "fan_start",
@@ -70,7 +70,76 @@ AHU_CONTROL_MODULE_ORDER = [
     "unclassified",
 ]
 
-AHU_IO_MODULE_ORDER = ["field_input", "comm_input", "reference", "internal", "physical_output", "comm_output"]
+DEFAULT_MODULE_ORDERS = {
+    "io_comm": ["field_input", "comm_input", "reference", "internal", "physical_output", "comm_output"],
+    "control": DEFAULT_CONTROL_MODULE_ORDER,
+    "schedule": ["timer_input", "timer_logic", "timer_output"],
+    "dx_status": ["dx_register", "dx_convert", "dx_standard"],
+    "exhaust_fan": ["system", "schedule_enable", "exhaust", "feedback", "fault", "unclassified"],
+    "dx_fault": ["dx_control", "fault", "feedback", "unclassified"],
+}
+
+DEFAULT_DETAIL_EDGES = {
+    "io_comm": [
+        ("field_input", "internal"),
+        ("comm_input", "internal"),
+        ("reference", "internal"),
+        ("internal", "physical_output"),
+        ("internal", "comm_output"),
+    ],
+    "control": [
+        ("system", "schedule_enable"),
+        ("schedule_enable", "fan_start"),
+        ("fan_start", "fan_frequency"),
+        ("system", "temperature"),
+        ("temperature", "valve"),
+        ("temperature", "electric_heat"),
+        ("temperature", "damper_co2"),
+        ("dx_control", "feedback"),
+        ("fan_start", "feedback"),
+    ],
+    "schedule": [("timer_input", "timer_logic"), ("timer_logic", "timer_output")],
+    "dx_status": [("dx_register", "dx_convert"), ("dx_convert", "dx_standard")],
+    "exhaust_fan": [("system", "exhaust"), ("schedule_enable", "exhaust"), ("exhaust", "feedback")],
+    "dx_fault": [("dx_control", "fault"), ("fault", "feedback")],
+}
+
+DEFAULT_DETAIL_NOTES = {
+    "schedule": "TIME_CST 表示定时允许输出，由 TIME_EN 和 SP0 共同决定。",
+}
+
+
+def role_meta_for(project: Any) -> dict[str, dict[str, str]]:
+    return _dict_items(project.profile_config.get("overview", {}).get("role_meta"), DEFAULT_ROLE_META)
+
+
+def role_order_for(project: Any) -> list[str]:
+    return _string_list(project.profile_config.get("overview", {}).get("role_order"), DEFAULT_ROLE_ORDER)
+
+
+def overview_edges_for(project: Any) -> list[dict[str, str]]:
+    return _overview_edge_list(project.profile_config.get("overview", {}).get("edges"), DEFAULT_OVERVIEW_EDGES)
+
+
+def module_meta_for(project: Any) -> dict[str, dict[str, str]]:
+    return _dict_items(project.profile_config.get("detail", {}).get("module_meta"), DEFAULT_MODULE_META)
+
+
+def module_order_for(project: Any, role: str) -> list[str]:
+    configured = project.profile_config.get("detail", {}).get("module_orders", {}).get(role)
+    return _string_list(configured, DEFAULT_MODULE_ORDERS.get(role, DEFAULT_CONTROL_MODULE_ORDER))
+
+
+def detail_profile_edges_for(project: Any, role: str) -> list[tuple[str, str]]:
+    configured = project.profile_config.get("detail", {}).get("profile_edges", {}).get(role)
+    return _edge_pair_list(configured, DEFAULT_DETAIL_EDGES.get(role, DEFAULT_DETAIL_EDGES["control"]))
+
+
+def detail_note_for(project: Any, role: str) -> str | None:
+    note = project.profile_config.get("detail", {}).get("notes", {}).get(role)
+    if isinstance(note, str):
+        return note
+    return DEFAULT_DETAIL_NOTES.get(role)
 
 
 def classify_control_point(point: Any) -> str:
@@ -114,32 +183,6 @@ def classify_module_instance(name: str, subflow_name: str, tab_role: str) -> str
     if "CO2" in text or "风阀" in text:
         return "damper_co2"
     return "unclassified"
-
-
-def module_order_for_control_tab(role: str) -> list[str]:
-    if role == "exhaust_fan":
-        return ["system", "schedule_enable", "exhaust", "feedback", "fault", "unclassified"]
-    if role == "dx_fault":
-        return ["dx_control", "fault", "feedback", "unclassified"]
-    return AHU_CONTROL_MODULE_ORDER
-
-
-def control_profile_edges(role: str) -> list[tuple[str, str]]:
-    if role == "exhaust_fan":
-        return [("system", "exhaust"), ("schedule_enable", "exhaust"), ("exhaust", "feedback")]
-    if role == "dx_fault":
-        return [("dx_control", "fault"), ("fault", "feedback")]
-    return [
-        ("system", "schedule_enable"),
-        ("schedule_enable", "fan_start"),
-        ("fan_start", "fan_frequency"),
-        ("system", "temperature"),
-        ("temperature", "valve"),
-        ("temperature", "electric_heat"),
-        ("temperature", "damper_co2"),
-        ("dx_control", "feedback"),
-        ("fan_start", "feedback"),
-    ]
 
 
 def detail_position(tab_role: str, index: int) -> tuple[int, int]:
@@ -186,3 +229,49 @@ def overview_position(profile_name: str, role: str, index: int) -> tuple[int, in
             return positions[role]
         return 920, 520 + index * 130
     return 110 + (index % 4) * 280, 120 + (index // 4) * 190
+
+
+def _dict_items(value: Any, fallback: dict[str, dict[str, str]]) -> dict[str, dict[str, str]]:
+    result = {key: dict(item) for key, item in fallback.items()}
+    if not isinstance(value, dict):
+        return result
+    for key, item in value.items():
+        if isinstance(item, dict):
+            default_item = result.get(str(key), {})
+            result[str(key)] = {**default_item, **{str(field): str(field_value) for field, field_value in item.items()}}
+    return result
+
+
+def _string_list(value: Any, fallback: list[str]) -> list[str]:
+    if not isinstance(value, list):
+        return fallback
+    result = [str(item) for item in value]
+    return result or fallback
+
+
+def _overview_edge_list(value: Any, fallback: list[dict[str, str]]) -> list[dict[str, str]]:
+    if not isinstance(value, list):
+        return fallback
+    edges: list[dict[str, str]] = []
+    for item in value:
+        if not isinstance(item, dict):
+            continue
+        source = item.get("sourceRole")
+        target = item.get("targetRole")
+        label = item.get("label")
+        if source is None or target is None or label is None:
+            continue
+        edges.append({"sourceRole": str(source), "targetRole": str(target), "label": str(label)})
+    return edges or fallback
+
+
+def _edge_pair_list(value: Any, fallback: list[tuple[str, str]]) -> list[tuple[str, str]]:
+    if not isinstance(value, list):
+        return fallback
+    edges: list[tuple[str, str]] = []
+    for item in value:
+        if isinstance(item, list) and len(item) == 2:
+            edges.append((str(item[0]), str(item[1])))
+        elif isinstance(item, dict) and item.get("source") is not None and item.get("target") is not None:
+            edges.append((str(item["source"]), str(item["target"])))
+    return edges or fallback

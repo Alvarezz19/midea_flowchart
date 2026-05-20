@@ -5,13 +5,13 @@ import re
 from typing import Any
 
 from .ahu_rules import (
-    AHU_IO_MODULE_ORDER,
-    MODULE_KIND_META,
     classify_control_point,
     classify_module_instance,
-    control_profile_edges,
+    detail_note_for,
+    detail_profile_edges_for,
     detail_position,
-    module_order_for_control_tab,
+    module_meta_for,
+    module_order_for,
 )
 from .models import ProjectModel, TabModel
 from .serializers import point_search_text
@@ -47,15 +47,8 @@ def _io_comm_detail_graph(project: ProjectModel, tab: TabModel, point_ids: list[
             assignments[node.id] = "physical_output"
         else:
             assignments[node.id] = "internal"
-    pairs = [
-        ("field_input", "internal"),
-        ("comm_input", "internal"),
-        ("reference", "internal"),
-        ("internal", "physical_output"),
-        ("internal", "comm_output"),
-    ]
-    nodes = [_module_graph_node(project, tab, module_id, assignments, index) for index, module_id in enumerate(AHU_IO_MODULE_ORDER)]
-    edges = _supported_profile_edges(project, assignments, pairs)
+    nodes = [_module_graph_node(project, tab, module_id, assignments, index) for index, module_id in enumerate(module_order_for(project, tab.role))]
+    edges = _supported_profile_edges(project, assignments, detail_profile_edges_for(project, tab.role))
     return {"level": "L2", "layout": "signal_flow", "nodes": nodes, "edges": edges, "supportEdges": _module_edges_from_assignments(project, assignments)}
 
 
@@ -69,13 +62,13 @@ def _control_detail_graph(project: ProjectModel, tab: TabModel, point_ids: list[
         if module.tab_id == tab.id:
             assignments[module.node_id] = classify_module_instance(module.name, module.subflow_name, tab.role)
     _assign_connected_operator_nodes(project, tab, assignments)
-    module_order = module_order_for_control_tab(tab.role)
+    module_order = module_order_for(project, tab.role)
     nodes = [
         _module_graph_node(project, tab, module_id, assignments, index)
         for index, module_id in enumerate(module_order)
         if module_id != "unclassified" or any(value == "unclassified" for value in assignments.values())
     ]
-    edges = _supported_profile_edges(project, assignments, control_profile_edges(tab.role))
+    edges = _supported_profile_edges(project, assignments, detail_profile_edges_for(project, tab.role))
     return {"level": "L2", "layout": "module_flow", "nodes": nodes, "edges": edges, "supportEdges": _module_edges_from_assignments(project, assignments)}
 
 
@@ -89,18 +82,17 @@ def _schedule_detail_graph(project: ProjectModel, tab: TabModel, point_ids: list
         if node_id not in assignments:
             assignments[node_id] = "timer_logic"
     nodes = [
-        _module_graph_node(project, tab, "timer_input", assignments, 0),
-        _module_graph_node(project, tab, "timer_logic", assignments, 1),
-        _module_graph_node(project, tab, "timer_output", assignments, 2),
+        _module_graph_node(project, tab, module_id, assignments, index)
+        for index, module_id in enumerate(module_order_for(project, tab.role))
     ]
-    edges = _supported_profile_edges(project, assignments, [("timer_input", "timer_logic"), ("timer_logic", "timer_output")])
+    edges = _supported_profile_edges(project, assignments, detail_profile_edges_for(project, tab.role))
     return {
         "level": "L2",
         "layout": "compact_logic",
         "nodes": nodes,
         "edges": edges,
         "supportEdges": _module_edges_from_assignments(project, assignments),
-        "note": "TIME_CST 表示定时允许输出，由 TIME_EN 和 SP0 共同决定。",
+        "note": detail_note_for(project, tab.role),
     }
 
 
@@ -113,11 +105,10 @@ def _dx_status_detail_graph(project: ProjectModel, tab: TabModel, point_ids: lis
         if node_id not in assignments:
             assignments[node_id] = "dx_convert"
     nodes = [
-        _module_graph_node(project, tab, "dx_register", assignments, 0),
-        _module_graph_node(project, tab, "dx_convert", assignments, 1),
-        _module_graph_node(project, tab, "dx_standard", assignments, 2),
+        _module_graph_node(project, tab, module_id, assignments, index)
+        for index, module_id in enumerate(module_order_for(project, tab.role))
     ]
-    edges = _supported_profile_edges(project, assignments, [("dx_register", "dx_convert"), ("dx_convert", "dx_standard")])
+    edges = _supported_profile_edges(project, assignments, detail_profile_edges_for(project, tab.role))
     return {"level": "L2", "layout": "mapping_matrix", "nodes": nodes, "edges": edges, "supportEdges": _module_edges_from_assignments(project, assignments)}
 
 
@@ -157,7 +148,8 @@ def _module_graph_node(
         for point_id in point_ids
         if project.nodes[project.points[point_id].node_id].type in {"hwOutput", "modbusOutput", "swInput"}
     ]
-    meta = MODULE_KIND_META.get(module_id, {"label": fallback_label or module_id, "kind": "unknown"})
+    module_meta = module_meta_for(project)
+    meta = module_meta.get(module_id, {"label": fallback_label or module_id, "kind": "unknown"})
     x, y = detail_position(tab.role, index)
     issues = _recognition_issues(project, node_ids, point_ids)
     return {

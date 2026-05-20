@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 from typing import Any
 
-from .ahu_rules import AHU_RELATIONS, AHU_ROLE_ORDER, ROLE_META, overview_position
+from .ahu_rules import overview_edges_for, overview_position, role_meta_for, role_order_for
 from .models import ProjectModel, TabModel
 from .serializers import tab_point_ids
 
@@ -25,13 +25,13 @@ def build_overview_graph(project: ProjectModel) -> dict[str, Any]:
         "profile": project.profile_name,
         "nodes": nodes,
         "edges": edges,
-        "legend": ROLE_META,
+        "legend": role_meta_for(project),
     }
 
 
 def ordered_tabs(project: ProjectModel) -> list[TabModel]:
     if project.profile_name == "ahu":
-        role_rank = {role: index for index, role in enumerate(AHU_ROLE_ORDER)}
+        role_rank = {role: index for index, role in enumerate(role_order_for(project))}
         return sorted(project.tabs.values(), key=lambda tab: (role_rank.get(tab.role, 99), tab.label))
     return list(project.tabs.values())
 
@@ -47,7 +47,8 @@ def _overview_node(project: ProjectModel, tab: TabModel, index: int) -> dict[str
     )
     naming_counts = Counter(project.points[point_id].naming_status for point_id in point_ids)
     x, y = overview_position(project.profile_name, tab.role, index)
-    meta = ROLE_META.get(tab.role, ROLE_META["unknown_tab"])
+    role_meta = role_meta_for(project)
+    meta = role_meta.get(tab.role, role_meta["unknown_tab"])
     label = meta["label"] if tab.role != "unknown_tab" else tab.label
     return {
         "id": f"tab:{tab.id}",
@@ -75,7 +76,10 @@ def _ahu_edges(project: ProjectModel, node_by_role: dict[str, list[dict[str, Any
     raw_support = _cross_tab_support(project)
     edges: list[dict[str, Any]] = []
     edge_index = 0
-    for source_role, target_role, label in AHU_RELATIONS:
+    for relation in overview_edges_for(project):
+        source_role = relation["sourceRole"]
+        target_role = relation["targetRole"]
+        label = relation["label"]
         for source_node in node_by_role.get(source_role, []):
             for target_node in node_by_role.get(target_role, []):
                 support = raw_support.get((source_node["tabId"], target_node["tabId"]), [])
