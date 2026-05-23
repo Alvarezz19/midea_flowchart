@@ -33,8 +33,9 @@ class Phase3OverviewTests(unittest.TestCase):
         relations = {(edge["source"], edge["target"]) for edge in view["overview"]["edges"]}
         node_by_role = {node["role"]: node["id"] for node in view["overview"]["nodes"]}
         self.assertIn((node_by_role["io_comm"], node_by_role["control"]), relations)
+        self.assertIn((node_by_role["control"], node_by_role["io_comm"]), relations)
         self.assertIn((node_by_role["schedule"], node_by_role["control"]), relations)
-        self.assertIn((node_by_role["dx_status"], node_by_role["control"]), relations)
+        self.assertTrue(all(edge["supportCount"] > 0 for edge in view["overview"]["edges"]))
 
     def test_all_ahu_samples_build_overview(self) -> None:
         paths = sorted((ROOT / "programs/AHU程序").rglob("*.json"))
@@ -143,14 +144,16 @@ class Phase5DetailGraphTests(unittest.TestCase):
             self.assertIn("reverseSupportCount", edge)
             self.assertIn(edge["supportDirection"], {"direct", "reverse", "mixed", "none"})
             self.assertEqual(edge["supportCount"], edge["directSupportCount"] + edge["reverseSupportCount"])
+            self.assertGreater(edge["supportCount"], 0)
         self.assertIn("supportEdges", control["detailGraph"])
         self.assertGreater(len(control["detailGraph"]["supportEdges"]), len(control["detailGraph"]["edges"]))
 
         dx_status = self._tab("dx_status")
         self.assertEqual(
             [(edge["source"], edge["target"]) for edge in dx_status["detailGraph"]["edges"]],
-            [("dx_register", "dx_convert"), ("dx_convert", "dx_standard")],
+            [("dx_convert", "dx_standard")],
         )
+        self.assertTrue(all(edge["supportCount"] > 0 for edge in dx_status["detailGraph"]["edges"]))
 
     def test_all_samples_have_detail_graph_and_raw_trace(self) -> None:
         matcher = NamingMatcher(ROOT / "data/naming_rules.json")
@@ -184,6 +187,7 @@ class Phase5DetailGraphTests(unittest.TestCase):
         io_tab = next(tab for tab in view["tabs"] if tab["role"] == "io_comm")
         self.assertEqual(io_node["label"], "现场输入配置")
         self.assertIn("自定义总览链路", {edge["label"] for edge in view["overview"]["edges"]})
+        self.assertTrue(all(edge["supportCount"] > 0 for edge in view["overview"]["edges"]))
         self.assertEqual(next(node for node in io_tab["detailGraph"]["nodes"] if node["id"] == "field_input")["label"], "现场采集")
         self.assertEqual([(edge["source"], edge["target"]) for edge in io_tab["detailGraph"]["edges"]], [("field_input", "internal")])
 

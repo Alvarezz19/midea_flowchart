@@ -222,6 +222,8 @@ def _supported_profile_edges(
         direct_count = direct["supportCount"] if direct else 0
         reverse_count = reverse["supportCount"] if reverse else 0
         support_count = direct_count + reverse_count
+        if support_count == 0:
+            continue
         support_direction = "mixed" if direct_count and reverse_count else "direct" if direct_count else "reverse" if reverse_count else "none"
         support = []
         if direct:

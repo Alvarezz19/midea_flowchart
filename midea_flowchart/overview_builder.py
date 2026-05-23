@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+import re
 from typing import Any
 
 from .ahu_rules import overview_edges_for, overview_position, role_meta_for, role_order_for
 from .models import ProjectModel, TabModel
 from .serializers import tab_point_ids
+
+
+QUOTE_REF_PATTERN = re.compile(r"^\[([^:\]]+):(\d+)\]")
 
 
 def build_overview_graph(project: ProjectModel) -> dict[str, Any]:
@@ -83,6 +87,8 @@ def _ahu_edges(project: ProjectModel, node_by_role: dict[str, list[dict[str, Any
         for source_node in node_by_role.get(source_role, []):
             for target_node in node_by_role.get(target_role, []):
                 support = raw_support.get((source_node["tabId"], target_node["tabId"]), [])
+                if not support:
+                    continue
                 edge_index += 1
                 edges.append(
                     {
@@ -131,6 +137,24 @@ def _cross_tab_support(project: ProjectModel) -> dict[tuple[str, str], list[dict
                 "sourceName": source.name,
                 "targetNodeId": target.id,
                 "targetName": target.name,
+            }
+        )
+    for target in project.nodes.values():
+        if target.type != "quote" or target.z not in project.tabs:
+            continue
+        match = QUOTE_REF_PATTERN.match(str(target.raw.get("labelName") or ""))
+        if not match:
+            continue
+        source = project.nodes.get(match.group(1))
+        if source is None or source.z == target.z or source.z not in project.tabs:
+            continue
+        support[(source.z, target.z)].append(
+            {
+                "edgeId": f"quote:{target.id}",
+                "sourceNodeId": source.id,
+                "sourceName": source.name,
+                "targetNodeId": target.id,
+                "targetName": target.raw.get("labelName") or target.name,
             }
         )
     return support
