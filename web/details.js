@@ -72,6 +72,7 @@ function selectedPointTemplate(point) {
 function selectedModuleTemplate(module) {
   const inputPoints = module.inputPointIds.map(findPoint).filter(Boolean).slice(0, 8);
   const outputPoints = module.outputPointIds.map(findPoint).filter(Boolean).slice(0, 8);
+  const softwarePoints = (module.softwarePointIds || []).map(findPoint).filter(Boolean).slice(0, 8);
   return `
     <div class="section-title">当前模块</div>
     <div class="module-item active">
@@ -84,6 +85,7 @@ function selectedModuleTemplate(module) {
     </div>
     ${miniPointList("模块输入", inputPoints)}
     ${miniPointList("模块输出", outputPoints)}
+    ${miniPointList("模块变量", softwarePoints)}
   `;
 }
 
@@ -95,7 +97,7 @@ function detailGraphSection(tab) {
     ${nodes.map((node) => `
       <div class="module-item ${node.id === state.selectedModuleId ? "active" : ""}" data-module-id="${escapeHtml(node.id)}">
         <div class="item-title">${escapeHtml(node.label)}</div>
-        <div class="item-meta">节点 ${node.stats.nodeCount} · 点位 ${node.stats.pointCount} · 输出 ${node.stats.outputPointCount}</div>
+        <div class="item-meta">节点 ${node.stats.nodeCount} · 点位 ${node.stats.pointCount} · 输出 ${node.stats.outputPointCount} · 变量 ${node.stats.softwarePointCount || 0}</div>
         <div class="badge-row">
           <span class="badge">${escapeHtml(node.kind)}</span>
           ${node.status === "incomplete" ? '<span class="badge bad">识别不完整</span>' : ""}

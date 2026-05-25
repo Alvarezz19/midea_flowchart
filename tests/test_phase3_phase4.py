@@ -106,6 +106,15 @@ class Phase5DetailGraphTests(unittest.TestCase):
         self.assertLess(len(graph["nodes"]), 20)
         self.assertGreater(len(graph["edges"]), 0)
 
+    def test_software_points_are_reported_separately_from_outputs(self) -> None:
+        tab = self._tab("control")
+        system = next(node for node in tab["detailGraph"]["nodes"] if node["id"] == "system")
+        self.assertEqual(system["stats"]["pointCount"], 50)
+        self.assertEqual(system["stats"]["inputPointCount"], 34)
+        self.assertEqual(system["stats"]["outputPointCount"], 0)
+        self.assertEqual(system["stats"]["softwarePointCount"], 16)
+        self.assertEqual(system["stats"]["resultPointCount"], 16)
+
     def test_io_comm_tab_uses_signal_boundary_graph(self) -> None:
         tab = self._tab("io_comm")
         graph = tab["detailGraph"]

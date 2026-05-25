@@ -23,7 +23,12 @@ export function findPoint(pointId) {
 export function findModuleByPoint(tabId, pointId) {
   const tab = state.data.tabs.find((item) => item.id === tabId);
   if (!tab || !tab.detailGraph) return null;
-  return tab.detailGraph.nodes.find((node) => node.inputPointIds.includes(pointId) || node.outputPointIds.includes(pointId));
+  return tab.detailGraph.nodes.find(
+    (node) =>
+      node.inputPointIds.includes(pointId) ||
+      node.outputPointIds.includes(pointId) ||
+      (node.softwarePointIds || []).includes(pointId)
+  );
 }
 
 export function currentTab() {

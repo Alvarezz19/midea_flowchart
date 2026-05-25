@@ -81,8 +81,8 @@ function detailEdgeElement(source, target, edge, mode = "primary") {
   });
   const title = svgEl("title");
   title.textContent = edge.supportDirection
-    ? `${edge.label} · 支撑 ${edge.supportCount}（正向 ${edge.directSupportCount} / 反向 ${edge.reverseSupportCount}）`
-    : `${edge.label} · 支撑 ${edge.supportCount}`;
+    ? `${edge.label} · 原始连线 ${edge.supportCount}（正向 ${edge.directSupportCount} / 反向 ${edge.reverseSupportCount}）`
+    : `${edge.label} · 原始连线 ${edge.supportCount}`;
   path.appendChild(title);
   return path;
 }
@@ -107,7 +107,7 @@ function detailNodeElement(node) {
   }));
   group.appendChild(svgText(node.label, 14, 25, 14, "800", "#20211e", 20));
   group.appendChild(svgText(`节点 ${node.stats.nodeCount}  点位 ${node.stats.pointCount}`, 14, 50, 12));
-  group.appendChild(svgText(`输入 ${node.stats.inputPointCount}  输出 ${node.stats.outputPointCount}`, 14, 72, 12));
+  group.appendChild(svgText(`输入 ${node.stats.inputPointCount}  输出 ${node.stats.outputPointCount}  变量 ${node.stats.softwarePointCount || 0}`, 14, 72, 12));
   const issueText = node.recognitionIssues.length ? node.recognitionIssues[0] : `命名异常 ${node.stats.namingIssueCount}`;
   group.appendChild(svgText(issueText, 14, 94, 11, "700", node.recognitionIssues.length ? "#b33f35" : "#6a6a60", 24));
   return group;
@@ -138,7 +138,7 @@ function edgeElement(source, target, edge) {
     "marker-end": "url(#arrow)",
   });
   const title = svgEl("title");
-  title.textContent = `${edge.label} · 支撑 ${edge.supportCount}`;
+  title.textContent = `${edge.label} · 原始连线 ${edge.supportCount}`;
   path.appendChild(title);
   return path;
 }

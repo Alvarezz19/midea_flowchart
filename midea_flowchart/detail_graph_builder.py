@@ -141,12 +141,17 @@ def _module_graph_node(
     input_points = [
         point_id
         for point_id in point_ids
-        if project.nodes[project.points[point_id].node_id].type in {"hwInput", "quote", "swInput"}
+        if project.nodes[project.points[point_id].node_id].type in {"hwInput", "quote"}
     ]
     output_points = [
         point_id
         for point_id in point_ids
-        if project.nodes[project.points[point_id].node_id].type in {"hwOutput", "modbusOutput", "swInput"}
+        if project.nodes[project.points[point_id].node_id].type in {"hwOutput", "modbusOutput"}
+    ]
+    software_points = [
+        point_id
+        for point_id in point_ids
+        if project.nodes[project.points[point_id].node_id].type == "swInput"
     ]
     module_meta = module_meta_for(project)
     meta = module_meta.get(module_id, {"label": fallback_label or module_id, "kind": "unknown"})
@@ -160,11 +165,14 @@ def _module_graph_node(
         "nodeIds": node_ids[:200],
         "inputPointIds": [item for item in input_points if item][:80],
         "outputPointIds": [item for item in output_points if item][:80],
+        "softwarePointIds": [item for item in software_points if item][:80],
         "stats": {
             "nodeCount": len(node_ids),
             "pointCount": len([item for item in point_ids if item]),
             "inputPointCount": len([item for item in input_points if item]),
             "outputPointCount": len([item for item in output_points if item]),
+            "softwarePointCount": len([item for item in software_points if item]),
+            "resultPointCount": len([item for item in output_points if item]) + len([item for item in software_points if item]),
             "namingIssueCount": sum(
                 1
                 for point_id in point_ids
@@ -275,7 +283,7 @@ def _recognition_issues(project: ProjectModel, node_ids: list[str], point_ids: l
     if actual_point_ids and not any(
         project.nodes[project.points[point_id].node_id].type in {"hwOutput", "modbusOutput", "swInput"} for point_id in actual_point_ids
     ):
-        issues.append("无明确输出点")
+        issues.append("无明确结果点")
     if any(project.points[point_id].naming_status == "unmatched" for point_id in actual_point_ids):
         issues.append("存在未匹配命名")
     return issues
